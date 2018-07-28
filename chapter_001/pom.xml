@@ -1,0 +1,11 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactld>chapter_001</artifactld>
+	<version>2.0</version>
+	<packaging>jar</packaging>
+	<parent>
+		<groupld>ru.job4j</groupld>
+		<artifactld>junior</artifactld>
+		<version>2.0</version>
+	</parent>
+</project>
