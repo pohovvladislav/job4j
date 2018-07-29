@@ -1,11 +1,11 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactld>chapter_001</artifactld>
+	<artifactId>chapter_001</artifactId>
 	<version>2.0</version>
 	<packaging>jar</packaging>
 	<parent>
-		<groupld>ru.job4j</groupld>
-		<artifactld>junior</artifactld>
+		<groupId>ru.job4j</groupId>
+		<artifactId>junior</artifactId>
 		<version>2.0</version>
 	</parent>
 </project>
