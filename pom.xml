@@ -1,7 +1,7 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>ru.job4j</groupId>
-    <artifactId> junior </artifactId>
+    <artifactId>junior</artifactId>
     <packaging>pom</packaging>
     <version>2.0</version>
      <name>junior</name>
@@ -16,15 +16,17 @@
     <modules>
        <module>chapter_001</module>
      </modules>
-	 <build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.0.0</version>
-        </plugin>
-    </plugins>
-	 </build>
+	 
+	  <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+        </plugins>
+    </build>
+	 
 <dependencies>
     <dependency>
         <groupId>org.hamcrest</groupId>
