@@ -1,6 +1,6 @@
 /**
  * Package for calculatorTest.
- *
+ * The calculation of ideal weightTest.
  * @author Popov Vladislav (mailto:navodbmd.2@mail.ru)
  *
  */
