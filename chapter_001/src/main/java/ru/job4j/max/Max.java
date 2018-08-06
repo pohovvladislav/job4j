@@ -1,16 +1,29 @@
 package ru.job4j.max;
 
 /**
- * Determining the maximum of two numbers.
+ * @author Popov Vladislav.
  */
 public class Max {
     /**
-     * Determining the maximum number.
-     * @param first First number.
-     * @param second Second number.
-     * @return increasing number.
+     * Determining the maximum of two numbers.
+     * @param first Number 1.
+     * @param second Number 2.
+     * @return Result
      */
     public int max(int first, int second) {
         return first > second ? first : second;
+    }
+
+    /**
+     * Determining the maximum of three numbers.
+     * @param first Number 1.
+     * @param second Number 2.
+     * @param third Number 3.
+     * @return Result.
+     */
+    public int max(int first, int second, int third) {
+        int temp = this.max(first, second);
+        temp = this.max(temp, third);
+        return temp;
     }
 }
