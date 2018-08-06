@@ -56,7 +56,7 @@ public class Triangle {
      * @param bc Длина от точки b c.
      * @return false.
      */
-    private boolean exist(double ab, double ac, double bc) {
-        return !(ab == bc + ac | ab == 0 | bc == ab + ac | bc == 0 | ac == bc + ab | ac == 0);
+    public boolean exist(double ab, double ac, double bc) {
+        return !(ab >= bc + ac | ab == 0 | bc >= ab + ac | bc == 0 | ac >= bc + ab | ac == 0);
     }
 }

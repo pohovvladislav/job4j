@@ -18,4 +18,16 @@ public class TriangleTest {
         double expected = 2D;
         assertThat(result, closeTo(expected, 0.1));
     }
+
+    /**
+     * Test method exist.
+     */
+    @Test
+    public void whenOneSideIsMoreThanTheSumOfTheOtherTwo() {
+        Point a = new Point(0, 0);
+        Point b = new Point(0, 0);
+        Point c = new Point(0, 0);
+        Triangle triangle = new Triangle(a, b, c);
+        assertFalse(triangle.exist(6, 4, 1));
+    }
 }
