@@ -1,6 +1,6 @@
 package ru.job4j.loop;
 /**
- *@author Popov vladislav (mailto:navodbmd.2@mail.ru).
+ * @author Popov vladislav (mailto:navodbmd.2@mail.ru).
  */
 
 import org.junit.Test;
