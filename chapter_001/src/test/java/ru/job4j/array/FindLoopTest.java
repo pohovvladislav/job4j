@@ -26,4 +26,13 @@ public class FindLoopTest {
         int expect = -1;
         assertThat(result, is(expect));
     }
+    @Test
+    public void whenArrayHesLengh3Then2() {
+        FindLoop findLoop = new FindLoop();
+        int[] input = new int[] {5, 10, 3};
+        int value = 3;
+        int result = findLoop.indexOf(input, value);
+        int expect = 2;
+        assertThat(result, is(expect));
+    }
 }
