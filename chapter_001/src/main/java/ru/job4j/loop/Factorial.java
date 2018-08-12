@@ -11,10 +11,10 @@ public class Factorial {
      */
     public int calc(int n) {
         int result = 1;
+        if (n == 0) {
+            return result;
+        }
         for (int count = 1; count <= n; count++) {
-            if (n == 0) {
-                return 1;
-            }
             result *= count;
         }
         return result;
