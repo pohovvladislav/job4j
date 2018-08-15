@@ -1,7 +1,7 @@
 package ru.job4j.array;
 
 /**
- *
+ * @author Popov vladislav (mailto:navodbmd.2@mail.ru).
  */
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
