@@ -12,16 +12,13 @@ public class Check {
      * @return Result.
      */
     public boolean mono(boolean[] data) {
-        boolean result = false;
-        int counter = 0;
+        boolean result = false; int counter = 0;
         for (boolean element : data) {
             if (element) {
                 counter++;
             }
         }
-        if (counter == 0 || counter == data.length) {
-            result = true;
-        }
+        result = (counter == 0 || counter == data.length);
         return result;
     }
 }
