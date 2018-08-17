@@ -12,21 +12,15 @@ public class MatrixCheck {
      * @return Result.
      */
     public boolean mono(boolean[][] data) {
-        boolean result = true; int counter = 0; int counterTrue = 0;
+        boolean result = true;
         for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data.length; j++) {
-                if ((i + j) % 2 == 0) {
-                    counter++;
-                    if (data[i][j]) {
-                        counterTrue++;
-                    }
-                }
+            if (data[0][0] != data[i][i]) {
+                result = false;
+                break;
             }
-        }
-        if (data.length > 2) {
-            result = (counter == counterTrue || counterTrue == 0);
-        } else {
-            result = (data[0][0] == data[1][1] && data[0][1] == data[1][0]);
+            if (data[0][data.length - 1] != data[i][data.length - 1 - 1]) {
+                result = true;
+            }
         }
         return result;
     }
