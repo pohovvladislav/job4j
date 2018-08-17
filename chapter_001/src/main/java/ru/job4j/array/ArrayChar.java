@@ -26,8 +26,12 @@ public class ArrayChar {
     public boolean startWith(String prefix) {
         boolean result = true;
         char[] value = prefix.toCharArray();
-        char[] auxiliary = Arrays.copyOf(data, value.length);
-        result = Arrays.equals(value, auxiliary);
+        for (int i = 0; i < value.length; i++) {
+            if (value[i] != data[i]) {
+                result = false;
+                break;
+            }
+        }
         return result;
     }
 }
