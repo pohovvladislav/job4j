@@ -50,7 +50,7 @@ public class Tracker {
     public void delete(String Id) {
         for (int index = 0; index <= this.position; index++) {
             if (items[index].getId().equals(Id)) {
-                items[index] = this.items[0];
+                items[index] = null;
                 }
                 if (this.items[index] == null) {
                   this.items[index] = items[index + 1];
