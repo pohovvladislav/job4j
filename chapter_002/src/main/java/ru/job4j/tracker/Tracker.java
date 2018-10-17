@@ -34,10 +34,10 @@ public class Tracker {
      * @param item new application.
      */
     public void replace(String Id, Item item) {
-        Item[] newApplications = {item};
         for (int index = 0; index != this.position; index++) {
             if (items[index].getId().equals(Id)) {
-                this.items[index] = newApplications[index];
+                this.items[index] = item;
+                item.setId(Id);
                 break;
             }
         }
@@ -51,11 +51,12 @@ public class Tracker {
         for (int index = 0; index <= this.position; index++) {
             if (items[index].getId().equals(Id)) {
                 items[index] = this.items[0];
-                items[0] = this.items[index];
-                break;
+                }
+                if (this.items[index] == null) {
+                  this.items[index] = items[index + 1];
+                System.arraycopy(items, 0, items, 0, 100);
             }
         }
-        System.arraycopy(items,1,items,0,items.length - 1);
     }
 
     /**
@@ -63,11 +64,7 @@ public class Tracker {
      * @return An array of applications.
      */
     public Item[] findAll() {
-        Item[] result = new Item[this.position];
-        for(int index = 0; index != this.position; index++) {
-            result[index] = this.items[index];
-        }
-        return result;
+        return Arrays.copyOf(this.items, this.position);
     }
 
     /**

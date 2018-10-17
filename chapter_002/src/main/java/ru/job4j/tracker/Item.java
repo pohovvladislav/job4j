@@ -4,11 +4,11 @@ package ru.job4j.tracker;
  * Class formation filings.
  */
 public class Item {
-    public String name;
-    public String description;
+    private String name;
+    private String description;
     private String Id;
-    public String comments;
-    public long created;
+    private String comments;
+    private long created;
 
 
     public Item() {

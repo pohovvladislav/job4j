@@ -33,7 +33,7 @@ public class TrackerTest {
         Item following = new Item("test1", "Description1", 1234L);
         tracker.add(following);
         tracker.delete(removable.getId());
-        assertThat(tracker.findAll()[0], is(following));
+        assertThat(tracker.findById(following.getId()).getName(), is("test1"));
     }
     @Test
     public void whenFindAllThenReturnItem() {
