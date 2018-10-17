@@ -50,11 +50,7 @@ public class Tracker {
     public void delete(String Id) {
         for (int index = 0; index != this.position; index++) {
             if (this.items[index].getId().equals(Id)) {
-                this.items[index] = null;
-                }
-                if (this.items[index] == null) {
-                  this.items[index] = items[index + 1];
-                System.arraycopy(this.items, 0, items, 0, 100);
+                System.arraycopy(this.items, index, this.items,index + 1, this.items.length - index - 1);
             }
         }
     }
@@ -83,6 +79,7 @@ public class Tracker {
         }
         return Arrays.copyOf(result, count);
     }
+
     /**
      * The method to find the application ID.
      * @param Id Id application.
