@@ -48,13 +48,13 @@ public class Tracker {
      * @param Id application Id.
      */
     public void delete(String Id) {
-        for (int index = 0; index <= this.position; index++) {
-            if (items[index].getId().equals(Id)) {
-                items[index] = null;
+        for (int index = 0; index != this.position; index++) {
+            if (this.items[index].getId().equals(Id)) {
+                this.items[index] = null;
                 }
                 if (this.items[index] == null) {
                   this.items[index] = items[index + 1];
-                System.arraycopy(items, 0, items, 0, 100);
+                System.arraycopy(this.items, 0, items, 0, 100);
             }
         }
     }
@@ -75,9 +75,9 @@ public class Tracker {
     public Item[] findByName(String key) {
         int count = 0;
         Item[] result = new Item[this.position];
-        for (int index = 0; index <= this.position; index++) {
-            if (items[index].getName().equals(key)) {
-                result[count] = items[index];
+        for (int index = 0; index != this.position; index++) {
+            if (this.items[index].getName().equals(key)) {
+                result[count] = this.items[index];
                 count++;
             }
         }

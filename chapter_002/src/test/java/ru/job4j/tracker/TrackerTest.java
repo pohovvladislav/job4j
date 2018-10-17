@@ -21,16 +21,15 @@ public class TrackerTest {
         Item previous = new Item("test1", "testDescription", 123L);
         tracker.add(previous);
         Item next = new Item("test2", "testDescription2", 1234L);
-        next.setId(previous.getId());
         tracker.replace(previous.getId(), next);
         assertThat(tracker.findById(previous.getId()).getName(), is("test2"));
     }
     @Test
     public void whenDeletedItemThan() {
         Tracker tracker = new Tracker();
-        Item removable = new Item("test", "Description", 123L);
+        Item removable = new Item("test", "testDescription", 123L);
         tracker.add(removable);
-        Item following = new Item("test1", "Description1", 1234L);
+        Item following = new Item("test1", "testDescription1", 1234L);
         tracker.add(following);
         tracker.delete(removable.getId());
         assertThat(tracker.findById(following.getId()).getName(), is("test1"));
