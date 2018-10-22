@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
-import java.lang.reflect.Array;
-import java.util.*;
+
+import java.util.Arrays;
+import java.util.Random;
 /**
  * The Tracker class contains methods for processing applications.
  */
@@ -50,7 +51,7 @@ public class Tracker {
     public void delete(String Id) {
         for (int index = 0; index != this.position; index++) {
             if (this.items[index].getId().equals(Id)) {
-                System.arraycopy(this.items, index, this.items,index + 1, this.items.length - index - 1);
+                System.arraycopy(this.items, index + 1, this.items, index, this.items.length - index - 1);
                 this.position--;
                 break;
             }

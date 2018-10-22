@@ -18,6 +18,7 @@ public class Item {
         this.description = description;
         this.created = created;
     }
+
     public String getName() {
         return this.name;
     }
