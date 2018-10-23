@@ -54,28 +54,43 @@ public class StartUI {
 
     private void listItem() {
         System.out.println("---------- Список заявок : ---------- ");
-        for (Item item : this.tracker.findAll()) {
-            System.out.println("Имя : " + item.getName() + "\t\t" + "Описание : " + item.getDescription() + "\t\t" + "Дата создания : "
-                    + item.getCreated());
+        System.out.printf("%-15s%-20s%s%n", "Имя", "Описание","Дата создания");
+        System.out.println("------------------------------------------------------");
+        if (this.tracker.findAll().length != 0) {
+            for (Item item : this.tracker.findAll()) {
+                System.out.printf("%-15.10s%-20.15s%s%n", item.getName(), item.getDescription(), item.getCreated());
+            }
+        } else {
+            System.out.println("---------- Заявки не созданы. ----------");
         }
+        System.out.println("------------------------------------------------------");
     }
 
     private void correctionItem() {
         System.out.println("---------- Изменение заявки ----------");
         String Id = this.input.ask(" Введите ID заявки : ");
-        String name = this.input.ask("Введите новое имя заявки : ");
-        String desc = this.input.ask("Введите описание заявки : ");
-        Long create = System.currentTimeMillis();
-        Item item = new Item(name, desc, create);
-        this.tracker.replace(Id,item);
-        System.out.println("Заявка успешно изменена.");
+        Item searchItem = this.tracker.findById(Id);
+        if (searchItem != null) {
+            String name = this.input.ask("Введите новое имя заявки : ");
+            String desc = this.input.ask("Введите описание заявки : ");
+            Long create = System.currentTimeMillis();
+            Item item = new Item(name, desc, create);
+            this.tracker.replace(Id, item);
+            System.out.println("Заявка успешно изменена.");
+        } else {
+            System.out.println("Заявка не найдена.");
+        }
     }
 
     private void removalItem() {
         System.out.println("---------- Удаление заявки ----------");
         String Id = this.input.ask("Введите ID заявки : ");
-        this.tracker.delete(Id);
-        System.out.println("Заявка успешно удалена.");
+        if (tracker.delete(Id)) {
+            this.tracker.delete(Id);
+            System.out.println("Заявка успешно удалена.");
+        } else {
+            System.out.println("Заявка не найдена.");
+        }
     }
 
     private void searchByIdItem() {
@@ -83,20 +98,28 @@ public class StartUI {
         Item item = this.tracker.findById(Id);
         if (item != null) {
             System.out.println("Заявка с данным ID : ");
-            System.out.println("Имя : " + item.getName() + "\t\t" + "Описание : " + item.getDescription() + "\t\t" + "Дата создания : "
-                    + item.getCreated());
+            System.out.printf("%-15s%-20s%s%n", "Имя", "Описание","Дата создания");
+            System.out.println("------------------------------------------------------");
+            System.out.printf("%-15.10s%-20.15s%s%n",item.getName(), item.getDescription(), item.getCreated());
+            System.out.println("------------------------------------------------------");
         } else {
-            System.out.println("По Вашему запросу ничего не найдено...");
+            System.out.println("Заявка не найдена.");
         }
     }
 
     private void searchByNameItem() {
         String name = this.input.ask("Введите имя заявки : ");
         System.out.println("---------- Список заявок : ---------- ");
-        for (Item item : this.tracker.findByName(name)) {
-            System.out.println("Имя : " + item.getName() + "\t\t" + "Описание : " + item.getDescription() + "\t\t" + "Дата создания : "
-                    + item.getCreated());
+        System.out.printf("%-15s%-20s%s%n", "Имя", "Описание","Дата создания");
+        System.out.println("------------------------------------------------------");
+        if (this.tracker.findByName(name).length != 0) {
+            for (Item item : this.tracker.findByName(name)) {
+                System.out.printf("%-15.10s%-20.15s%s%n", item.getName(), item.getDescription(), item.getCreated());
+            }
+        } else {
+            System.out.println("---------- Заявок не найдено. ----------");
         }
+        System.out.println("------------------------------------------------------");
     }
 
     private void showmenu() {

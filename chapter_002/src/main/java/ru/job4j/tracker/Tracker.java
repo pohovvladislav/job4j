@@ -48,14 +48,17 @@ public class Tracker {
      * Request deletion method.
      * @param Id application Id.
      */
-    public void delete(String Id) {
+    public boolean delete(String Id) {
+        boolean result = false;
         for (int index = 0; index != this.position; index++) {
             if (this.items[index].getId().equals(Id)) {
                 System.arraycopy(this.items, index + 1, this.items, index, this.items.length - index - 1);
                 this.position--;
+                result = true;
                 break;
             }
         }
+        return result;
     }
 
     /**
@@ -71,7 +74,7 @@ public class Tracker {
      * @param key Name of application.
      * @return Array of applications with the same name.
      */
-    public Item[] findByName(String key) {
+    public Item[]  findByName(String key) {
         int count = 0;
         Item[] result = new Item[this.position];
         for (int index = 0; index != this.position; index++) {
