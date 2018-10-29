@@ -31,14 +31,14 @@ public class Tracker {
 
     /**
      * Method of replacing an existing application.
-     * @param Id ID of the old request.
+     * @param id ID of the old request.
      * @param item new application.
      */
-    public void replace(String Id, Item item) {
+    public void replace(String id, Item item) {
         for (int index = 0; index != this.position; index++) {
-            if (items[index].getId().equals(Id)) {
+            if (items[index].getId().equals(id)) {
                 this.items[index] = item;
-                item.setId(Id);
+                item.setId(id);
                 break;
             }
         }
@@ -46,12 +46,12 @@ public class Tracker {
 
     /**
      * Request deletion method.
-     * @param Id application Id.
+     * @param id application Id.
      */
-    public boolean delete(String Id) {
+    public boolean delete(String id) {
         boolean result = false;
         for (int index = 0; index != this.position; index++) {
-            if (this.items[index].getId().equals(Id)) {
+            if (this.items[index].getId().equals(id)) {
                 System.arraycopy(this.items, index + 1, this.items, index, this.items.length - index - 1);
                 this.position--;
                 result = true;
@@ -88,13 +88,13 @@ public class Tracker {
 
     /**
      * The method to find the application ID.
-     * @param Id Id application.
+     * @param id Id application.
      * @return Application.
      */
-    public Item findById(String Id) {
+    public Item findById(String id) {
         Item result = null;
         for (Item item : items) {
-            if (item != null && item.getId().equals(Id)) {
+            if (item != null && item.getId().equals(id)) {
                 result = item;
                 break;
             }
