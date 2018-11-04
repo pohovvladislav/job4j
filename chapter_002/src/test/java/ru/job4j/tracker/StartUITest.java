@@ -10,10 +10,13 @@ import org.junit.Before;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
 public class StartUITest {
+    Tracker tracker = new Tracker();
+    private final Item first = tracker.add(new Item("test name", "desk", System.currentTimeMillis()));
+    private final Item second = tracker.add(new Item("test name_1", "desk_1", System.currentTimeMillis()));
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
@@ -28,50 +31,86 @@ public class StartUITest {
 
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
-        Tracker tracker =  new Tracker();
         Input input = new StubInput(new String[] {"0", "test name", "desk", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("test name"));
     }
     @Test
     public void whenUpdateThenTrackerHasUpdatedValue() {
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("test name", "desk", System.currentTimeMillis()));
-        Input input = new StubInput(new String[] {"2", item.getId(), "test replace", "заменили заявку", "6"});
+        Input input = new StubInput(new String[] {"2", first.getId(), "test replace", "заменили заявку", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
+        assertThat(tracker.findById(first.getId()).getName(), is("test replace"));
     }
     @Test
     public void whenDeleteThanEmptyList() {
-        Tracker tracker = new Tracker();
-        Item first = tracker.add(new Item("name1", "desc", System.currentTimeMillis()));
-        Item second = tracker.add(new Item("name2", "desc", System.currentTimeMillis()));
         Input input = new StubInput(new String[] {"3", first.getId(), "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0], is(second));
     }
     @Test
     public void whenFindAll() {
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("name", "desc", System.currentTimeMillis()));
         Input input = new StubInput(new String[] {"1", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findById(item.getId()).getName(), is("name"));
+        assertThat(this.out.toString(), is(
+                "Меню.\r\n"
+                        + "0. Создание новой заявки.\r\n"
+                        + "1. Список созданных заявок.\r\n"
+                        + "2. Изменить заявку.\r\n"
+                        + "3. Удаление заявки.\r\n"
+                        + "4. Найти заявку по ID.\r\n"
+                        + "5. Найти заявку по имени.\r\n"
+                        + "6. Выход.\r\n"
+                        + "---------- Список заявок : ---------- \r\n"
+                        + "Имя            Описание            Дата создания\r\n"
+                        + "------------------------------------------------------\r\n"
+                        + "test name      desk                " + this.first.getCreated() + "\r\n"
+                        + "test name_     desk_1              " + this.second.getCreated() + "\r\n"
+                        + "------------------------------------------------------\r\n"
+                        + "Меню.\r\n"
+                        + "0. Создание новой заявки.\r\n"
+                        + "1. Список созданных заявок.\r\n"
+                        + "2. Изменить заявку.\r\n"
+                        + "3. Удаление заявки.\r\n"
+                        + "4. Найти заявку по ID.\r\n"
+                        + "5. Найти заявку по имени.\r\n"
+                        + "6. Выход.\r\n"
+                )
+        );
     }
+
     @Test
     public void whenFindByName() {
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("name", "desc", System.currentTimeMillis()));
-        Input input = new StubInput(new String[] {"5", "name", "6"});
+        Input input = new StubInput(new String[] {"5", "test name_1", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findById(item.getId()).getName(), is("name"));
+        assertThat(this.out.toString(), is(
+                "Меню.\r\n"
+                        + "0. Создание новой заявки.\r\n"
+                        + "1. Список созданных заявок.\r\n"
+                        + "2. Изменить заявку.\r\n"
+                        + "3. Удаление заявки.\r\n"
+                        + "4. Найти заявку по ID.\r\n"
+                        + "5. Найти заявку по имени.\r\n"
+                        + "6. Выход.\r\n"
+                        + "---------- Список заявок : ---------- \r\n"
+                        + "Имя            Описание            Дата создания\r\n"
+                        + "------------------------------------------------------\r\n"
+                        + "test name_     desk_1              " + this.second.getCreated() + "\r\n"
+                        + "------------------------------------------------------\r\n"
+                        + "Меню.\r\n"
+                        + "0. Создание новой заявки.\r\n"
+                        + "1. Список созданных заявок.\r\n"
+                        + "2. Изменить заявку.\r\n"
+                        + "3. Удаление заявки.\r\n"
+                        + "4. Найти заявку по ID.\r\n"
+                        + "5. Найти заявку по имени.\r\n"
+                        + "6. Выход.\r\n"
+                )
+        );
     }
     @Test
     public void whenFindById() {
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("name", "desc", System.currentTimeMillis()));
-        Input input = new StubInput(new String[] {"4", item.getId(), "6"});
+        Input input = new StubInput(new String[] {"4", second.getId(), "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("name"));
+        assertThat(tracker.findAll()[1].getName(), is("test name_1"));
     }
 }
