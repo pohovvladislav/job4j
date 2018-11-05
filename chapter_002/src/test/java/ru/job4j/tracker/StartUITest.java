@@ -19,6 +19,14 @@ public class StartUITest {
     private final Item second = tracker.add(new Item("test name_1", "desk_1", System.currentTimeMillis()));
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final String menu = "Меню." + System.lineSeparator()
+            + "0. Создание новой заявки." + System.lineSeparator()
+            + "1. Список созданных заявок." + System.lineSeparator()
+            + "2. Изменить заявку." + System.lineSeparator()
+            + "3. Удаление заявки." + System.lineSeparator()
+            + "4. Найти заявку по ID." + System.lineSeparator()
+            + "5. Найти заявку по имени." + System.lineSeparator()
+            + "6. Выход." + System.lineSeparator();
 
     @Before
     public void loadOutput() {
@@ -52,28 +60,14 @@ public class StartUITest {
         Input input = new StubInput(new String[] {"1", "6"});
         new StartUI(input, tracker).init();
         assertThat(this.out.toString(), is(
-                "Меню.\r\n"
-                        + "0. Создание новой заявки.\r\n"
-                        + "1. Список созданных заявок.\r\n"
-                        + "2. Изменить заявку.\r\n"
-                        + "3. Удаление заявки.\r\n"
-                        + "4. Найти заявку по ID.\r\n"
-                        + "5. Найти заявку по имени.\r\n"
-                        + "6. Выход.\r\n"
-                        + "---------- Список заявок : ---------- \r\n"
-                        + "Имя            Описание            Дата создания\r\n"
-                        + "------------------------------------------------------\r\n"
-                        + "test name      desk                " + this.first.getCreated() + "\r\n"
-                        + "test name_     desk_1              " + this.second.getCreated() + "\r\n"
-                        + "------------------------------------------------------\r\n"
-                        + "Меню.\r\n"
-                        + "0. Создание новой заявки.\r\n"
-                        + "1. Список созданных заявок.\r\n"
-                        + "2. Изменить заявку.\r\n"
-                        + "3. Удаление заявки.\r\n"
-                        + "4. Найти заявку по ID.\r\n"
-                        + "5. Найти заявку по имени.\r\n"
-                        + "6. Выход.\r\n"
+                menu
+                        + "---------- Список заявок : ---------- " + System.lineSeparator()
+                        + "Имя            Описание            Дата создания" + System.lineSeparator()
+                        + "------------------------------------------------------" + System.lineSeparator()
+                        + "test name      desk                " + this.first.getCreated()  + System.lineSeparator()
+                        + "test name_     desk_1              " + this.second.getCreated() + System.lineSeparator()
+                        + "------------------------------------------------------" + System.lineSeparator()
+                        + menu
                 )
         );
     }
@@ -83,27 +77,13 @@ public class StartUITest {
         Input input = new StubInput(new String[] {"5", "test name_1", "6"});
         new StartUI(input, tracker).init();
         assertThat(this.out.toString(), is(
-                "Меню.\r\n"
-                        + "0. Создание новой заявки.\r\n"
-                        + "1. Список созданных заявок.\r\n"
-                        + "2. Изменить заявку.\r\n"
-                        + "3. Удаление заявки.\r\n"
-                        + "4. Найти заявку по ID.\r\n"
-                        + "5. Найти заявку по имени.\r\n"
-                        + "6. Выход.\r\n"
-                        + "---------- Список заявок : ---------- \r\n"
-                        + "Имя            Описание            Дата создания\r\n"
-                        + "------------------------------------------------------\r\n"
-                        + "test name_     desk_1              " + this.second.getCreated() + "\r\n"
-                        + "------------------------------------------------------\r\n"
-                        + "Меню.\r\n"
-                        + "0. Создание новой заявки.\r\n"
-                        + "1. Список созданных заявок.\r\n"
-                        + "2. Изменить заявку.\r\n"
-                        + "3. Удаление заявки.\r\n"
-                        + "4. Найти заявку по ID.\r\n"
-                        + "5. Найти заявку по имени.\r\n"
-                        + "6. Выход.\r\n"
+                menu
+                        + "---------- Список заявок : ---------- " + System.lineSeparator()
+                        + "Имя            Описание            Дата создания" + System.lineSeparator()
+                        + "------------------------------------------------------" + System.lineSeparator()
+                        + "test name_     desk_1              " + this.second.getCreated() + System.lineSeparator()
+                        + "------------------------------------------------------" + System.lineSeparator()
+                        + menu
                 )
         );
     }
