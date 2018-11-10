@@ -21,7 +21,6 @@ class DeleteItem implements UserAction {
         System.out.println("---------- Удаление заявки ----------");
         String id = input.ask("Введите ID заявки : ");
         if (tracker.delete(id)) {
-            tracker.delete(id);
             System.out.println("Заявка успешно удалена.");
         } else {
             System.out.println("Заявка не найдена.");
@@ -49,14 +48,14 @@ public class MenuTracker {
         return this.actions.size();
     }
 
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         this.actions.add(new AddItem());
         this.actions.add(new ShowItems());
         this.actions.add(new MenuTracker.EditItem());
         this.actions.add(new DeleteItem());
         this.actions.add(new FindItemById());
         this.actions.add(new FindItemsByName());
-        this.actions.add(new ExitProgram());
+        this.actions.add(new ExitProgram(ui));
     }
 
     public void select(int key) {
@@ -212,6 +211,11 @@ public class MenuTracker {
     }
 
     private class ExitProgram implements UserAction {
+        private final StartUI ui;
+
+        ExitProgram(StartUI ui) {
+            this.ui = ui;
+        }
 
         @Override
         public int key() {
@@ -220,7 +224,7 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.exit(0);
+            this.ui.stop();
         }
 
         @Override

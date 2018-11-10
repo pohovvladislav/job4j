@@ -16,6 +16,7 @@ public class StartUI {
     private static final String EXIT = "6";
     private final Input input;
     private final Tracker tracker;
+    private boolean working = true;
 
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
@@ -25,15 +26,19 @@ public class StartUI {
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         List<Integer> range = new ArrayList<>();
-        menu.fillActions();
+        menu.fillActions(this);
         for (int i = 0; i < menu.getActionsLength(); i++) {
             range.add(i);
         }
         do {
             menu.show();
             menu.select(Integer.valueOf(input.ask("выберите :" + range)));
-        } while (!"y".equals(this.input.ask("Выход (y) : ")));
+        } while (this.working && !"y".equals(this.input.ask("Выход (y) : ")));
+
     }
+        public void stop() {
+            this.working = false;
+        }
 
     private void createItem() {
         System.out.println("---------- Добавление новой заявки ----------");
