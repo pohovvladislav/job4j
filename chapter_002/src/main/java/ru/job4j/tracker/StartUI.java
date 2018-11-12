@@ -32,13 +32,13 @@ public class StartUI {
         }
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask("выберите :" + range)));
-        } while (this.working && !"y".equals(this.input.ask("Выход (y) : ")));
-
+            menu.select(input.ask("выберите :", range));
+        } while (this.working);
     }
-        public void stop() {
-            this.working = false;
-        }
+
+    public void stop() {
+        this.working = false;
+    }
 
     private void createItem() {
         System.out.println("---------- Добавление новой заявки ----------");
@@ -134,6 +134,6 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
