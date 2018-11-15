@@ -32,8 +32,14 @@ public class ValidateInputTest {
 
     @Test
     public void whenInvalidInput() {
-        ValidateInput input = new ValidateInput(new StubInput(new String[] {"invalid", "1"}));
-        input.ask("Enter", new ArrayList<>(1));
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"invalid", "2"}));
+        input.ask("Enter", new ArrayList<>(0));
         assertThat(this.mem.toString(), is(String.format("Пожалуйста, введите номер пункта из списка.%n")));
+    }
+    @Test
+    public void whenNumberOutList() {
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"12", "1"}));
+        input.ask("Enter", new ArrayList<>(0));
+        assertThat(this.mem.toString(), is(String.format("Пожалуйста, выберите пункт меню!%n")));
     }
 }
