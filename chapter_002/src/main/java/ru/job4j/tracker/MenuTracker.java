@@ -29,7 +29,7 @@ class DeleteItem implements UserAction {
 
     @Override
     public String info() {
-        return "3. Удаление заявки";
+        return String.format("%s. %s", this.key(), "Удаление заявки.");
     }
 }
 
@@ -90,7 +90,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "0. Добавление новой заявки";
+            return String.format("%s. %s", this.key(), "Создание новой заявки.");
         }
     }
 
@@ -119,7 +119,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "1. Список созданных заявок.";
+            return String.format("%s. %s", this.key(), "Список созданных заявок.");
         }
     }
 
@@ -148,7 +148,7 @@ public class MenuTracker {
         }
         @Override
         public String info() {
-            return "2. Изменение заявки.";
+            return String.format("%s. %s", this.key(), "Изменить заявку.");
         }
     }
 
@@ -176,7 +176,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "4. Найти заявку по ID.";
+            return String.format("%s. %s", this.key(), "Найти заявку по ID.");
         }
     }
 
@@ -206,7 +206,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "5. Найти заявку по имени.";
+            return String.format("%s. %s", this.key(), "Найти заявку по имени.");
         }
     }
 
@@ -229,7 +229,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "6. Выход.";
+            return String.format("%s. %s", this.key(), "Выход.");
         }
     }
 }

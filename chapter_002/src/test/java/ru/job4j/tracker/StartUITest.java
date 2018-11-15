@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -19,8 +20,8 @@ public class StartUITest {
     private final Item second = tracker.add(new Item("test name_1", "desk_1", System.currentTimeMillis()));
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
-    private final String menu = "Меню." + System.lineSeparator()
-            + "0. Создание новой заявки." + System.lineSeparator()
+    private final String menu =
+              "0. Создание новой заявки." + System.lineSeparator()
             + "1. Список созданных заявок." + System.lineSeparator()
             + "2. Изменить заявку." + System.lineSeparator()
             + "3. Удаление заявки." + System.lineSeparator()

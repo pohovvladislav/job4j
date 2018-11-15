@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ *@version $Id$
+ *@since 0.1
  */
 public class StartUI {
     private static final String ADD = "0";
@@ -33,6 +34,7 @@ public class StartUI {
         do {
             menu.show();
             menu.select(input.ask("выберите :", range));
+
         } while (this.working);
     }
 
@@ -134,6 +136,6 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 }
