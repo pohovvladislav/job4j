@@ -26,10 +26,9 @@ public class StubInput implements Input {
                 exist = true;
             }
         }
-        if (exist) {
-            return key;
-        } else {
+        if (!exist) {
             throw new MenuOutException("Выход за пределы списка!");
         }
+        return key;
     }
 }
