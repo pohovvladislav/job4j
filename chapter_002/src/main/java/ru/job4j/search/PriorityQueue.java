@@ -3,27 +3,22 @@ package ru.job4j.search;
 import java.util.LinkedList;
 
 /**
- *
+ * The class implements a list of tasks.
  */
 public class PriorityQueue {
     private LinkedList<Task> tasks = new LinkedList<>();
 
     /**
-     *
-     * @param task
+     * The method adds the task to the right position.
+     * @param task task.
      */
     public void put(Task task) {
-        int count = 0;
-        tasks.add(count, task);
-        count++;
-        for (int j = 1; j < tasks.size(); j++) {
-            for (int i = 0; i < tasks.size() - j; i++) {
-                Task rst = tasks.get(i);
-                if (tasks.get(i + 1).getPriority() < tasks.get(i).getPriority()) {
-                    tasks.set(i, tasks.get(i + 1));
-                    tasks.set(i + 1, rst);
-                }
+        for (int i = 0; i <= tasks.size(); i++) {
+            if (!(tasks.isEmpty() || task.getPriority() < tasks.get(i).getPriority())) {
+                i++;
             }
+            tasks.add(i, task);
+            break;
         }
     }
 

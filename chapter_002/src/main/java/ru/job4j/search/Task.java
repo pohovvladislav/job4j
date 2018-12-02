@@ -1,7 +1,7 @@
 package ru.job4j.search;
 
 /**
- *
+ * The class describes tasks.
  */
 public class Task {
     private String desc;

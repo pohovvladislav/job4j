@@ -6,7 +6,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 /**
- *
+ * The test of program PriorityQueue.
  */
 public class PriorityQueueTest {
     @Test
