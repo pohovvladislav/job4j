@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 /**
- * The test of program ConvertList2Array.
+ * The test of ConvertList2Array.
  */
 public class ConvertList2ArrayTest {
     @Test
