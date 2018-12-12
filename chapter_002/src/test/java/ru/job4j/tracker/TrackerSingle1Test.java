@@ -8,12 +8,12 @@ import static org.junit.Assert.assertThat;
 /**
  *
  */
-public class TrackerSingle_1Test {
+public class TrackerSingle1Test {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        TrackerSingle_1 trackerSingle_1 = TrackerSingle_1.INSTANCE;
+        TrackerSingle1 trackerSingle1 = TrackerSingle1.INSTANCE;
         Item item = new Item("test1", "testDescription", 123L);
-        trackerSingle_1.add(item);
-        assertThat(trackerSingle_1.findAll()[0], is(item));
+        trackerSingle1.add(item);
+        assertThat(trackerSingle1.findAll()[0], is(item));
     }
 }

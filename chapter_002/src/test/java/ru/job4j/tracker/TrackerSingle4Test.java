@@ -8,10 +8,10 @@ import static org.junit.Assert.assertThat;
 /**
  *
  */
-public class TrackerSingle_4Test {
+public class TrackerSingle4Test {
     @Test
     public void whenFindByNameThanArrayItem() {
-        TrackerSingle_4 tracker = TrackerSingle_4.getInstance();
+        TrackerSingle4 tracker = TrackerSingle4.getInstance();
         Item first = new Item("test1", "Description", 123L);
         tracker.add(first);
         Item second = new Item("test2", "Description2", 1234L);

@@ -3,14 +3,14 @@ package ru.job4j.tracker;
 /**
  *
  */
-public class TrackerSingle_3 {
-    private static final TrackerSingle_3 INSTANCE = new TrackerSingle_3();
+public class TrackerSingle3 {
+    private static final TrackerSingle3 INSTANCE = new TrackerSingle3();
     private Tracker tracker = new Tracker();
 
-    private TrackerSingle_3() {
+    private TrackerSingle3() {
     }
 
-    public static TrackerSingle_3 getInstance() {
+    public static TrackerSingle3 getInstance() {
         return INSTANCE;
     }
 

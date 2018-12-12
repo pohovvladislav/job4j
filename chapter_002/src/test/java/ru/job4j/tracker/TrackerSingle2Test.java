@@ -8,13 +8,13 @@ import static org.junit.Assert.assertThat;
 /**
  *
  */
-public class TrackerSingle_2Test {
+public class TrackerSingle2Test {
     @Test
     public void whenFindByIdThenReturnItem() {
-        TrackerSingle_2 trackerSingle_2 = TrackerSingle_2.getInstance();
+        TrackerSingle2 trackerSingle2 = TrackerSingle2.getInstance();
         Item item = new Item("test", "Description", 123L);
-        trackerSingle_2.add(item);
-        trackerSingle_2.findById(item.getId());
-        assertThat(trackerSingle_2.findAll()[0], is(item));
+        trackerSingle2.add(item);
+        trackerSingle2.findById(item.getId());
+        assertThat(trackerSingle2.findAll()[0], is(item));
     }
 }

@@ -3,16 +3,16 @@ package ru.job4j.tracker;
 /**
  *
  */
-public class TrackerSingle_2 {
-    private static TrackerSingle_2 instance;
+public class TrackerSingle2 {
+    private static TrackerSingle2 instance;
     private Tracker tracker = new Tracker();
 
-    private TrackerSingle_2() {
+    private TrackerSingle2() {
     }
 
-    public static TrackerSingle_2 getInstance() {
+    public static TrackerSingle2 getInstance() {
         if (instance == null) {
-            instance = new TrackerSingle_2();
+            instance = new TrackerSingle2();
         }
         return instance;
     }
