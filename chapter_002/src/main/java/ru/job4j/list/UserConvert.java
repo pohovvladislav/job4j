@@ -2,6 +2,7 @@ package ru.job4j.list;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * @author В-87.
@@ -18,5 +19,18 @@ public class UserConvert {
             map.put(user.getId(), user);
         }
         return map;
+    }
+
+    /**
+     * The method sorts users by age/
+     * @param list List of Users.
+     * @return TreeSet Users.
+     */
+    public TreeSet<User> sort(List<User> list) {
+        TreeSet<User> set = new TreeSet<>();
+        for (User user : list) {
+            set.add(user);
+        }
+        return set;
     }
 }
