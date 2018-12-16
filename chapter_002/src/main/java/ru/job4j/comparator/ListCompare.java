@@ -20,9 +20,10 @@ public class ListCompare implements Comparator<String> {
             cmp = Integer.compare(o1.charAt(i), o2.charAt(i));
             if (cmp != 0) {
                 break;
-            } else if (o1.length() - o2.length() != 0){
-                cmp = Integer.compare(o1.length(), o2.length());
             }
+        }
+        if (cmp == 0 && o1.length() - o2.length() != 0){
+            cmp = Integer.compare(o1.length(), o2.length());
         }
         return cmp;
     }
