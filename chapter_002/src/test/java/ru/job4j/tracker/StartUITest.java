@@ -21,13 +21,13 @@ public class StartUITest {
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     private final String menu =
-              "0. Создание новой заявки." + System.lineSeparator()
-            + "1. Список созданных заявок." + System.lineSeparator()
-            + "2. Изменить заявку." + System.lineSeparator()
-            + "3. Удаление заявки." + System.lineSeparator()
-            + "4. Найти заявку по ID." + System.lineSeparator()
-            + "5. Найти заявку по имени." + System.lineSeparator()
-            + "6. Выход." + System.lineSeparator();
+              "0 : Создание новой заявки." + System.lineSeparator()
+            + "1 : Список созданных заявок." + System.lineSeparator()
+            + "2 : Изменить заявку." + System.lineSeparator()
+            + "3 : Удаление заявки." + System.lineSeparator()
+            + "4 : Найти заявку по ID." + System.lineSeparator()
+            + "5 : Найти заявку по имени." + System.lineSeparator()
+            + "6 : Выход." + System.lineSeparator();
 
     @Before
     public void loadOutput() {

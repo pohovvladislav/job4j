@@ -14,16 +14,16 @@ public class ListCompare implements Comparator<String> {
      */
     @Override
     public int compare(String o1, String o2) {
-        int cmpO1 = 0, cmpO2 = 0;
+        int cmp = 0;
         int length = o1.length() < o2.length() ? o1.length() : o2.length();
         for (int i = 0; i != length; i++) {
-            int cmp = Integer.compare(o1.charAt(i), o2.charAt(i));
-            if (cmp == 1) {
-                cmpO1++;
-            } else if (cmp == -1) {
-                cmpO2++;
+            cmp = Integer.compare(o1.charAt(i), o2.charAt(i));
+            if (cmp != 0) {
+                break;
+            } else if (o1.length() - o2.length() != 0){
+                cmp = Integer.compare(o1.length(), o2.length());
             }
         }
-        return cmpO1 > cmpO2 ? 1 : cmpO2 == cmpO1 && o1.length() == o2.length() ? 0 : -1;
+        return cmp;
     }
 }
