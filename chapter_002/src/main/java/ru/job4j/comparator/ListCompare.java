@@ -22,8 +22,8 @@ public class ListCompare implements Comparator<String> {
                 break;
             }
         }
-        if (cmp == 0 && o1.length() - o2.length() != 0){
-            cmp = Integer.compare(o1.length(), o2.length());
+        if (cmp == 0) {
+            cmp = o1.length() - o2.length();
         }
         return cmp;
     }
