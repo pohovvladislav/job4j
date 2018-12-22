@@ -14,6 +14,8 @@ import static org.junit.Assert.*;
 public class OperationsTest {
     private Operations operations = new Operations();
     private User user = new User("Victor", "12345");
+    private Account account =  new Account(50, "11A11");
+    private Account account1 = new Account(100, "12A11");
 
     @Test
     public void whenAddUser() {
@@ -27,6 +29,11 @@ public class OperationsTest {
         assertFalse(operations.getUserAccount().containsKey(user));
     }
     @Test
+    public void whenGetUserByPassportThenUser() {
+        operations.addUser(user);
+        assertThat(operations.getUserByPassport("12345"), is(user));
+    }
+    @Test
     public void whenAddAccountToUser() {
         operations.addUser(user);
         operations.addAccountToUser("12345", new Account(50, "11A11"));
@@ -35,8 +42,6 @@ public class OperationsTest {
     @Test
     public void whenDeleteAccountFromUser() {
         operations.addUser(user);
-        Account account =  new Account(50, "11A11");
-        Account account1 = new Account(100, "12A11");
         operations.addAccountToUser("12345", account);
         operations.addAccountToUser("12345", account1);
         operations.deleteAccountFromUser("12345", account);
@@ -45,19 +50,21 @@ public class OperationsTest {
     @Test
     public void whenGetUserAccountThenListOfAccount() {
         operations.addUser(user);
-        Account account =  new Account(50, "11A11");
-        Account account1 = new Account(100, "12A11");
         operations.addAccountToUser("12345", account);
         operations.addAccountToUser("12345", account1);
-        List<Account> result = operations.getUserAccounts("12345");
-        List<Account> expect = Arrays.asList(account, account1);
-        assertThat(result, is(expect));
+        assertThat(operations.getUserAccounts("12345"), is(Arrays.asList(account, account1)));
     }
     @Test
     public void whenTransferMoney() {
         operations.addUser(user);
-        Account account =  new Account(50, "11A11");
-        Account account1 = new Account(100, "12A11");
+        operations.addAccountToUser("12345", account);
+        operations.addAccountToUser("12345", account1);
+        assertTrue(operations.transfer(account, account1, 18));
+    }
+
+    @Test
+    public void whenTransferMoneyBetweenUsers() {
+        operations.addUser(user);
         operations.addAccountToUser("12345", account);
         operations.addAccountToUser("12345", account1);
         assertTrue(operations.transferMoney("12345", "12A11", "12345", "11A11", 18));

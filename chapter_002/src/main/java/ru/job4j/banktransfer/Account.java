@@ -4,7 +4,7 @@ package ru.job4j.banktransfer;
  * The class describes the customer's Bank account.
  */
 public class Account {
-    private int value;
+    private double value;
     private String requisites;
 
     public Account(int value, String requisites) {
@@ -12,7 +12,7 @@ public class Account {
         this.requisites = requisites;
     }
 
-    public int getValue() {
+    public double getValue() {
         return this.value;
     }
 
@@ -20,7 +20,7 @@ public class Account {
         return this.requisites;
     }
 
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
     }
 }

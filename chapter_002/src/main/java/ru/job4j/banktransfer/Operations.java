@@ -30,18 +30,28 @@ public class Operations {
     }
 
     /**
+     * The method finds the user's passport.
+     * @param passport User's passport.
+     * @return User.
+     */
+    public User getUserByPassport(String passport) {
+        User user = null;
+        for (Map.Entry<User, List<Account>> entry : this.userAccount.entrySet()) {
+            User key = entry.getKey();
+            if (key.getPassport().equals(passport)) {
+                user = key;
+                break;
+            }
+        }
+        return user;
+    }
+    /**
      * The method of adding an invoice to the user.
      * @param passport User passport.
      * @param account New account of user.
      */
     public void addAccountToUser(String passport, Account account) {
-        for (Map.Entry<User, List<Account>> entry : this.userAccount.entrySet()) {
-            User user = entry.getKey();
-            if (user.getPassport().equals(passport)) {
-                this.userAccount.get(user).add(account);
-                break;
-            }
-        }
+        this.userAccount.get(this.getUserByPassport(passport)).add(account);
     }
 
     /**
@@ -50,13 +60,7 @@ public class Operations {
      * @param account Account of user.
      */
     public void deleteAccountFromUser(String passport, Account account) {
-        for (Map.Entry<User, List<Account>> entry : this.userAccount.entrySet()) {
-            User user = entry.getKey();
-            if (user.getPassport().equals(passport)) {
-                entry.getValue().remove(account);
-                break;
-            }
-        }
+        this.userAccount.get(this.getUserByPassport(passport)).remove(account);
     }
 
     /**
@@ -65,15 +69,41 @@ public class Operations {
      * @return List of accounts for the user.
      */
     public List<Account> getUserAccounts(String passport) {
-        List<Account> list = new ArrayList<>();
-        for (Map.Entry<User, List<Account>> entry : this.userAccount.entrySet()) {
-            User user = entry.getKey();
-            if (user.getPassport().equals(passport)) {
-                list = entry.getValue();
-                break;
+        return this.userAccount.get(this.getUserByPassport(passport));
+    }
+
+    /**
+     * The method finds the user's account on the passport.
+     * @param passport User's passport.
+     * @param requisite Account's requisite.
+     * @return User's account.
+     */
+    public Account getAccountByRequisiteFromUserPassport(String passport, String requisite) {
+        Account accountReq = null;
+        for (Account account : this.getUserAccounts(passport)) {
+            if (account.getRequisites().equals(requisite)) {
+                accountReq = account;
             }
         }
-        return list;
+        return accountReq;
+    }
+
+    /**
+     * The method for transferring money from one account to another.
+     * @param srcAccount The account of the sender.
+     * @param destAccount Beneficiary's account.
+     * @param amount Amount.
+     * @return Result.
+     */
+    public boolean transfer(Account srcAccount, Account destAccount, double amount) {
+        boolean result = false;
+        if (srcAccount != null && destAccount != null && amount <= srcAccount.getValue() && amount > 0
+                && srcAccount != destAccount) {
+            result = true;
+            srcAccount.setValue(srcAccount.getValue() - amount);
+            destAccount.setValue(destAccount.getValue() + amount);
+        }
+        return result;
     }
 
     /**
@@ -86,36 +116,8 @@ public class Operations {
      * @return Result.
      */
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport,
-                                  String destRequisite, double amount) {
-        boolean result = false;
-        Account srcAccount = null;
-        Account destAccount = null;
-        for (Map.Entry<User, List<Account>> entry : this.userAccount.entrySet()) {
-            User user = entry.getKey();
-            if (user.getPassport().equals(srcPassport)) {
-                for (Account account : entry.getValue()) {
-                    if (account.getRequisites().equals(srcRequisite)) {
-                        srcAccount = account;
-                    }
-                }
-            }
-            if (user.getPassport().equals(destPassport)) {
-                for (Account account : entry.getValue()) {
-                    if (account.getRequisites().equals(destRequisite)) {
-                        destAccount = account;
-                    }
-                }
-            }
-            if (srcAccount != null && destAccount != null) {
-                break;
-            }
-        }
-        if (srcAccount != null && destAccount != null && amount <= srcAccount.getValue() && amount > 0
-                && srcAccount != destAccount) {
-            result = true;
-            srcAccount.setValue((int) (srcAccount.getValue() - amount));
-            destAccount.setValue((int) (destAccount.getValue() + amount));
-        }
-        return result;
+                                 String destRequisite, double amount) {
+        return this.transfer(this.getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite),
+                this.getAccountByRequisiteFromUserPassport(destPassport, destRequisite), amount);
     }
 }
