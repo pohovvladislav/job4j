@@ -9,7 +9,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Test.
  */
 public class OperationsTest {
     private Operations operations = new Operations();
@@ -60,7 +60,6 @@ public class OperationsTest {
         Account account1 = new Account(100, "12A11");
         operations.addAccountToUser("12345", account);
         operations.addAccountToUser("12345", account1);
-        operations.transferMoney("12345", "12A11", "12345", "11A11", 10);
-        assertThat(operations.getUserAccount().get(user).get(0).getValue(), is(60));
+        assertTrue(operations.transferMoney("12345", "12A11", "12345", "11A11", 18));
     }
 }

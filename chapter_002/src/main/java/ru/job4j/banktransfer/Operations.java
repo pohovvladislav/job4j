@@ -39,6 +39,7 @@ public class Operations {
             User user = entry.getKey();
             if (user.getPassport().equals(passport)) {
                 this.userAccount.get(user).add(account);
+                break;
             }
         }
     }
@@ -52,11 +53,8 @@ public class Operations {
         for (Map.Entry<User, List<Account>> entry : this.userAccount.entrySet()) {
             User user = entry.getKey();
             if (user.getPassport().equals(passport)) {
-                for (Account acc : entry.getValue()) {
-                    if (acc.equals(account)) {
-                        entry.getValue().remove(account);
-                    }
-                }
+                entry.getValue().remove(account);
+                break;
             }
         }
     }
@@ -72,13 +70,14 @@ public class Operations {
             User user = entry.getKey();
             if (user.getPassport().equals(passport)) {
                 list = entry.getValue();
+                break;
             }
         }
         return list;
     }
 
     /**
-     * Method for transferring money from one account to another.
+     * The method for transferring money from one account to another.
      * @param srcPassport The passport of the sender.
      * @param srcRequisite The details of the sender.
      * @param destPassport Beneficiary's passport.
@@ -107,8 +106,11 @@ public class Operations {
                     }
                 }
             }
+            if (srcAccount != null && destAccount != null) {
+                break;
+            }
         }
-        if (srcAccount != null && destAccount != null && amount <= srcAccount.getValue()
+        if (srcAccount != null && destAccount != null && amount <= srcAccount.getValue() && amount > 0
                 && srcAccount != destAccount) {
             result = true;
             srcAccount.setValue((int) (srcAccount.getValue() - amount));
