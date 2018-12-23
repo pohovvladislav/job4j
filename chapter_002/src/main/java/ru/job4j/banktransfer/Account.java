@@ -23,4 +23,20 @@ public class Account {
     public void setValue(double value) {
         this.value = value;
     }
+
+    /**
+     * The method for transferring money from one account to another.
+     * @param destAccount Beneficiary's account.
+     * @param amount Amount.
+     * @return Result.
+     */
+    public boolean transfer(Account destAccount, double amount) {
+        boolean result = false;
+        if (destAccount != null && amount <= this.value && amount > 0 && this != destAccount) {
+            result = true;
+            this.value -= amount;
+            destAccount.value += amount;
+        }
+        return result;
+    }
 }

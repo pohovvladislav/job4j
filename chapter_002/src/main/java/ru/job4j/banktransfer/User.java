@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * The class describes the Bank's customer.
  */
-public class User implements Comparable<User> {
+public class User {
     private String name;
     private String passport;
 
@@ -37,10 +37,5 @@ public class User implements Comparable<User> {
     @Override
     public int hashCode() {
         return Objects.hash(this.passport);
-    }
-
-    @Override
-    public int compareTo(User o) {
-        return this.name.compareTo(o.name);
     }
 }

@@ -6,7 +6,7 @@ import java.util.*;
  * The class describes banking operations.
  */
 public class Operations {
-    private Map<User, List<Account>> userAccount = new TreeMap<>();
+    private Map<User, List<Account>> userAccount = new HashMap<>();
 
 
     public Map<User, List<Account>> getUserAccount() {
@@ -90,24 +90,6 @@ public class Operations {
 
     /**
      * The method for transferring money from one account to another.
-     * @param srcAccount The account of the sender.
-     * @param destAccount Beneficiary's account.
-     * @param amount Amount.
-     * @return Result.
-     */
-    public boolean transfer(Account srcAccount, Account destAccount, double amount) {
-        boolean result = false;
-        if (srcAccount != null && destAccount != null && amount <= srcAccount.getValue() && amount > 0
-                && srcAccount != destAccount) {
-            result = true;
-            srcAccount.setValue(srcAccount.getValue() - amount);
-            destAccount.setValue(destAccount.getValue() + amount);
-        }
-        return result;
-    }
-
-    /**
-     * The method for transferring money from one account to another.
      * @param srcPassport The passport of the sender.
      * @param srcRequisite The details of the sender.
      * @param destPassport Beneficiary's passport.
@@ -117,7 +99,8 @@ public class Operations {
      */
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport,
                                  String destRequisite, double amount) {
-        return this.transfer(this.getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite),
-                this.getAccountByRequisiteFromUserPassport(destPassport, destRequisite), amount);
+        return this.getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite).transfer(
+                this.getAccountByRequisiteFromUserPassport(destPassport, destRequisite), amount
+        );
     }
 }
