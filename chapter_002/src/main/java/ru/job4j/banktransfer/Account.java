@@ -20,10 +20,6 @@ public class Account {
         return this.requisites;
     }
 
-    public void setValue(double value) {
-        this.value = value;
-    }
-
     /**
      * The method for transferring money from one account to another.
      * @param destAccount Beneficiary's account.
