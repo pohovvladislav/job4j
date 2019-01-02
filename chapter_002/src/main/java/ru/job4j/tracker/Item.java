@@ -43,4 +43,11 @@ public class Item {
     public long getCreated() {
         return this.created;
     }
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
