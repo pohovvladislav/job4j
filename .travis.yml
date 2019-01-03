@@ -11,6 +11,6 @@ after_success:
 notifications:
   email:
     recipients:
-      -navodbmd.2@mail.ru
+      - navodbmd.2@mail.ru
     on_success: never # default: change
     on_failure: always # default: always

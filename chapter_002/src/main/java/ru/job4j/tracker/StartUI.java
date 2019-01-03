@@ -28,7 +28,7 @@ public class StartUI {
             range.add(i);
         }
         do {
-            menu.show();
+            menu.show(output);
             menu.select(input.ask("выберите :", range));
 
         } while (this.working);
