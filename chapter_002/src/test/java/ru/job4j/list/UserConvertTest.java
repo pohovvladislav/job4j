@@ -36,7 +36,6 @@ public class UserConvertTest {
     }
     @Test
     public void whenAddUsersByArrayListThanSortByAllFields() {
-        //list.add(new User(11, "Nikolai", 17,"Kuibyshev"));
         List<User> result = convert.sortByAllFields(list);
         assertThat(result.get(2).getName() + result.get(2).getAge(), is("Nikolai" + 30));
     }

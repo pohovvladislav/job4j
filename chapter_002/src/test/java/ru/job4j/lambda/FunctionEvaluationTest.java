@@ -1,7 +1,8 @@
-package ru.job4j;
+package ru.job4j.lambda;
 
 import java.util.List;
 import org.junit.Test;
+import ru.job4j.lambda.FunctionEvaluation;
 
 import java.util.Arrays;
 

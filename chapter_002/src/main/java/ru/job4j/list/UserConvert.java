@@ -1,6 +1,8 @@
 package ru.job4j.list;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author В-87.
@@ -14,9 +16,7 @@ public class UserConvert {
      */
     public HashMap<Integer, User> process(List<User> list) {
         HashMap<Integer, User> map = new HashMap<>();
-        for (User user : list) {
-            map.put(user.getId(), user);
-        }
+        list.forEach(element -> map.put(element.getId(), element));
         return map;
     }
 
@@ -36,14 +36,7 @@ public class UserConvert {
      */
     public List<User> sortNameLength(List<User> list) {
         List<User> nameLength = new ArrayList<>(list);
-        nameLength.sort(
-                new Comparator<User>() {
-                    @Override
-                    public int compare(User o1, User o2) {
-                        return Integer.compare(o1.getName().length(), o2.getName().length());
-                    }
-                }
-        );
+        nameLength.sort(Comparator.comparingInt(o -> o.getName().length()));
         return nameLength;
     }
 
@@ -54,15 +47,7 @@ public class UserConvert {
      */
     public List<User> sortByAllFields(List<User> list) {
         List<User> allFields = new ArrayList<>(list);
-        allFields.sort(
-                new Comparator<User>() {
-                    @Override
-                    public int compare(User o1, User o2) {
-                        int rsl = o1.getName().compareTo(o2.getName());
-                        return rsl != 0 ? rsl : Integer.compare(o1.getAge(), o2.getAge());
-                    }
-                }
-        );
+        allFields.sort(Comparator.comparing(User::getName).thenComparing(User::getAge));
         return allFields;
     }
 }

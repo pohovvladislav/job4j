@@ -2,19 +2,20 @@ package ru.job4j.search;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Класс реализует телефонный справочник на базе ArrayList.
  */
 public class PhoneDictionary {
-    List<Person> persons = new ArrayList<>();
+   private List<Person> persons = new ArrayList<>();
 
     /**
      * Метод создания объекта.
      * @param person Объект.
      */
     public void add(Person person) {
-       this.persons.add(person);
+        this.persons.add(person);
     }
 
     /**
@@ -23,13 +24,9 @@ public class PhoneDictionary {
      * @return Объекты поиска.
      */
     public List<Person> find(String key) {
-        List<Person> result = new ArrayList<>();
-        for (Person element : persons) {
-            if (element.getName().contains(key) || element.getSurname().contains(key)
-                    || element.getAddress().contains(key) || element.getPhone().contains(key)) {
-                result.add(element);
-            }
-        }
-        return result;
+        return persons.stream().filter(person -> person.getName().contains(key)
+                || person.getSurname().contains(key) || person.getAddress().contains(key)
+                || person.getPhone().contains(key)).collect(Collectors.toList()
+        );
     }
 }

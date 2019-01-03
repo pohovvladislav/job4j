@@ -1,5 +1,7 @@
 package ru.job4j.list;
 
+import java.util.Objects;
+
 /**
  * The class describes the user.
  */
