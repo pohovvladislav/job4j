@@ -86,8 +86,9 @@ public class Operations {
         Account accountReq = null;
         List<Account> list =  this.getUserAccounts(passport).stream().filter(account ->
                 account.getRequisites().equals(requisite)).collect(Collectors.toList());
-        for (Account account : list)
+        for (Account account : list) {
             accountReq = account;
+        }
         return accountReq;
     }
 

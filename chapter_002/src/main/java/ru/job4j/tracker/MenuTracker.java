@@ -10,22 +10,7 @@ import java.util.function.Consumer;
  * @since 0.1
  */
 
-class DeleteItem extends BaseAction {
 
-    public DeleteItem(int key, String name) {
-        super(key, name);
-    }
-
-    @Override
-    public void execute(Input input, Tracker tracker) {
-        String id = input.ask("Введите ID заявки : ");
-        if (tracker.delete(id)) {
-            System.out.println("Заявка успешно удалена.");
-        } else {
-            System.out.println("Заявка не найдена.");
-        }
-    }
-}
 
 public class MenuTracker {
     private Tracker tracker;
@@ -47,7 +32,7 @@ public class MenuTracker {
     public void fillActions(StartUI ui) {
         this.actions.add(new AddItem(0, "Создание новой заявки."));
         this.actions.add(new ShowItems(1, "Список созданных заявок."));
-        this.actions.add(new MenuTracker.EditItem(2, "Изменить заявку."));
+        this.actions.add(new EditItem(2, "Изменить заявку."));
         this.actions.add(new DeleteItem(3, "Удаление заявки."));
         this.actions.add(new FindItemById(4, "Найти заявку по ID."));
         this.actions.add(new FindItemsByName(5, "Найти заявку по имени."));
@@ -58,10 +43,10 @@ public class MenuTracker {
         this.actions.get(key).execute(this.input, this.tracker);
     }
 
-    public void show(Consumer<String> output) {
+    public void show(Consumer<String> cos) {
         for (UserAction action : this.actions) {
             if (action != null) {
-                output.accept(action.info());
+                cos.accept(action.info());
             }
         }
     }
@@ -104,7 +89,7 @@ public class MenuTracker {
         }
     }
 
-    private static class EditItem extends BaseAction {
+    private class EditItem extends BaseAction {
 
         public EditItem(int key, String name) {
             super(key, name);
@@ -120,9 +105,9 @@ public class MenuTracker {
                 Long create = System.currentTimeMillis();
                 Item item = new Item(name, desc, create);
                 tracker.replace(id, item);
-                System.out.println("Заявка успешно изменена.");
+                output.accept("Заявка успешно изменена.");
             } else {
-                System.out.println("Заявка не найдена.");
+                output.accept("Заявка не найдена.");
             }
         }
     }
@@ -163,6 +148,23 @@ public class MenuTracker {
                 }
             } else {
                 output.accept("Заявок не найдено.");
+            }
+        }
+    }
+
+   private class DeleteItem extends BaseAction {
+
+        public DeleteItem(int key, String name) {
+            super(key, name);
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            String id = input.ask("Введите ID заявки : ");
+            if (tracker.delete(id)) {
+                output.accept("Заявка успешно удалена.");
+            } else {
+                output.accept("Заявка не найдена.");
             }
         }
     }
