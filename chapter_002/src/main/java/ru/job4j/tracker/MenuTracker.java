@@ -80,7 +80,7 @@ public class MenuTracker {
             if (listFindAll.length != 0) {
                 for (Item item : listFindAll) {
                     output.accept(String.format("Name: %s| Desc: %s| Id: %s",
-                            item.getName(), item.getDescription(), item.getCreated())
+                            item.getName(), item.getDescription(), item.getId())
                     );
                 }
             } else {
@@ -124,7 +124,7 @@ public class MenuTracker {
             Item item = tracker.findById(id);
             if (item != null) {
                 output.accept(String.format("Name: %s| Desc: %s| Id: %s",
-                        item.getName(), item.getDescription(), item.getCreated()));
+                        item.getName(), item.getDescription(), item.getId()));
             } else {
                 output.accept("Заявка не найдена.");
             }
@@ -144,7 +144,7 @@ public class MenuTracker {
             if (listFindByName.length != 0) {
                 for (Item item : listFindByName) {
                     output.accept(String.format("Name: %s| Desc: %s| Id: %s",
-                            item.getName(), item.getDescription(), item.getCreated()));
+                            item.getName(), item.getDescription(), item.getId()));
                 }
             } else {
                 output.accept("Заявок не найдено.");

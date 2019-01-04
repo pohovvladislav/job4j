@@ -66,8 +66,8 @@ public class StartUITest {
     public void whenFindAll() {
         System.setOut(new PrintStream(out));
         new StartUI(new StubInput(new String[] {"1", "6"}), this.tracker, this.output).init();
-        assertThat(this.output.toString(), is(this.menu + "Name: test name| Desc: desk| Id:" + this.first.getId()
-                + System.lineSeparator() + "Name: test name_1| Desc: desk_1| Id:" + this.second.getId()
+        assertThat(this.output.toString(), is(this.menu + "Name: test name| Desc: desk| Id: " + this.first.getId()
+                + System.lineSeparator() + "Name: test name_1| Desc: desk_1| Id: " + this.second.getId()
                 + System.lineSeparator() + this.menu));
     }
 
@@ -75,7 +75,7 @@ public class StartUITest {
     public void whenFindByName() {
         System.setOut(new PrintStream(out));
         new StartUI(new StubInput(new String[] {"5", "test name_1", "6"}), this.tracker, this.output).init();
-        assertThat(this.output.toString(), is(this.menu + "Name: test name_1| Desc: desk_1| Id:"
+        assertThat(this.output.toString(), is(this.menu + "Name: test name_1| Desc: desk_1| Id: "
         + this.second.getId() + System.lineSeparator() + this.menu));
     }
 
@@ -84,7 +84,7 @@ public class StartUITest {
     public void whenFindById() {
         System.setOut(new PrintStream(out));
         new StartUI(new StubInput(new String[] {"4", this.second.getId(), "6"}), this.tracker, this.output).init();
-        assertThat(this.output.toString(), is(this.menu + "Name: test name_1| Desc: desk_1| Id:"
+        assertThat(this.output.toString(), is(this.menu + "Name: test name_1| Desc: desk_1| Id: "
                 + this.second.getId() + System.lineSeparator() + this.menu));
     }
 }
