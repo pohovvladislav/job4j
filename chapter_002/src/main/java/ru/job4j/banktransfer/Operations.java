@@ -1,6 +1,10 @@
 package ru.job4j.banktransfer;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * The class describes banking operations.
@@ -60,7 +64,7 @@ public class Operations {
      * @param account Account of user.
      */
     public void deleteAccountFromUser(String passport, Account account) {
-        this.userAccount.get(this.getUserByPassport(passport)).remove(account);
+       this.userAccount.get(this.getUserByPassport(passport)).remove(account);
     }
 
     /**
@@ -80,11 +84,10 @@ public class Operations {
      */
     public Account getAccountByRequisiteFromUserPassport(String passport, String requisite) {
         Account accountReq = null;
-        for (Account account : this.getUserAccounts(passport)) {
-            if (account.getRequisites().equals(requisite)) {
-                accountReq = account;
-            }
-        }
+        List<Account> list =  this.getUserAccounts(passport).stream().filter(account ->
+                account.getRequisites().equals(requisite)).collect(Collectors.toList());
+        for (Account account : list)
+            accountReq = account;
         return accountReq;
     }
 
