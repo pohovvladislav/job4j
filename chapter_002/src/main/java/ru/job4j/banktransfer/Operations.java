@@ -103,10 +103,14 @@ public class Operations {
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport,
                                  String destRequisite, double amount) {
         boolean result = false;
-        if (this.getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite).isPresent()
-                && this.getAccountByRequisiteFromUserPassport(destPassport, destRequisite).isPresent()) {
-            result = this.getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite).get().transfer(
-                    this.getAccountByRequisiteFromUserPassport(destPassport, destRequisite).get(), amount
+        Optional<Optional<Account>> srcAccount = Optional.of(this.getAccountByRequisiteFromUserPassport(srcPassport,
+                srcRequisite));
+        Optional<Optional<Account>> destAccount = Optional.ofNullable(this.getAccountByRequisiteFromUserPassport(destPassport,
+                destRequisite));
+        if (srcAccount.isPresent() && srcAccount.get().isPresent()
+                && destAccount.isPresent() && destAccount.get().isPresent()) {
+            result = srcAccount.get().get().transfer(
+                    destAccount.get().get(), amount
             );
         }
         return result;
