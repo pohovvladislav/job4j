@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 /**
  *
  */
@@ -25,7 +27,7 @@ public class TrackerSingle2 {
         return this.tracker.add(item);
     }
 
-    public Item[] findAll() {
+    public List<Item> findAll() {
         return this.tracker.findAll();
     }
 }

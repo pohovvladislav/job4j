@@ -47,7 +47,7 @@ public class StartUITest {
         System.setOut(new PrintStream(out));
         new StartUI(new StubInput(new String[] {"0", "test name", "desk", "6"}), this.tracker, this.output).init();
         assertThat(this.output.toString(), is(this.menu + "Новая заявка с ID "
-                + this.tracker.findAll()[2].getId() + System.lineSeparator() + this.menu));
+                + this.tracker.findAll().get(2).getId() + System.lineSeparator() + this.menu));
     }
     @Test
     public void whenUpdateThenTrackerHasUpdatedValue() {

@@ -15,6 +15,6 @@ public class TrackerSingle2Test {
         Item item = new Item("test", "Description", 123L);
         trackerSingle2.add(item);
         trackerSingle2.findById(item.getId());
-        assertThat(trackerSingle2.findAll()[0], is(item));
+        assertThat(trackerSingle2.findAll().get(0), is(item));
     }
 }

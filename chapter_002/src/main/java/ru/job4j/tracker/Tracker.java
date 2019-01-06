@@ -1,12 +1,14 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * The Tracker class contains methods for processing applications.
  */
 public class Tracker {
-    private final Item[] items = new Item[100];
+    private final List<Item> items = new ArrayList<>();
     private int position = 0;
     private static final Random RN = new Random();
 
@@ -17,7 +19,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        this.items.add(this.position++, item);
         return item;
     }
 
@@ -36,8 +38,8 @@ public class Tracker {
      */
     public void replace(String id, Item item) {
         for (int index = 0; index != this.position; index++) {
-            if (items[index].getId().equals(id)) {
-                this.items[index] = item;
+            if (this.items.get(index).getId().equals(id)) {
+                this.items.set(index, item);
                 item.setId(id);
                 break;
             }
@@ -51,8 +53,8 @@ public class Tracker {
     public boolean delete(String id) {
         boolean result = false;
         for (int index = 0; index != this.position; index++) {
-            if (this.items[index].getId().equals(id)) {
-                System.arraycopy(this.items, index + 1, this.items, index, this.items.length - index - 1);
+            if (this.items.get(index).getId().equals(id)) {
+                this.items.remove(index);
                 this.position--;
                 result = true;
                 break;
@@ -65,8 +67,8 @@ public class Tracker {
      * A method of obtaining a list of all applications.
      * @return An array of applications.
      */
-    public Item[] findAll() {
-        return Arrays.copyOf(this.items, this.position);
+    public List<Item> findAll() {
+        return this.items.stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 
     /**
@@ -74,16 +76,8 @@ public class Tracker {
      * @param key Name of application.
      * @return Array of applications with the same name.
      */
-    public Item[]  findByName(String key) {
-        int count = 0;
-        Item[] result = new Item[this.position];
-        for (int index = 0; index != this.position; index++) {
-            if (this.items[index].getName().equals(key)) {
-                result[count] = this.items[index];
-                count++;
-            }
-        }
-        return Arrays.copyOf(result, count);
+    public List<Item> findByName(String key) {
+        return  this.items.stream().filter(item -> item.getName().equals(key)).collect(Collectors.toList());
     }
 
     /**
@@ -93,11 +87,9 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        for (Item item : items) {
-            if (item != null && item.getId().equals(id)) {
-                result = item;
-                break;
-            }
+        Optional<Item> optionalItem = this.items.stream().filter(item -> item.getId().equals(id)).findFirst();
+        if (optionalItem.isPresent()) {
+            result = optionalItem.get();
         }
         return result;
     }

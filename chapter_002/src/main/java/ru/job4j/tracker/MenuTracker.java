@@ -76,8 +76,8 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            Item[] listFindAll = tracker.findAll();
-            if (listFindAll.length != 0) {
+            List<Item> listFindAll = tracker.findAll();
+            if (listFindAll.size() != 0) {
                 for (Item item : listFindAll) {
                     output.accept(String.format("Name: %s| Desc: %s| Id: %s",
                             item.getName(), item.getDescription(), item.getId())
@@ -140,8 +140,8 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             String name = input.ask("Введите имя заявки : ");
-            Item[] listFindByName = tracker.findByName(name);
-            if (listFindByName.length != 0) {
+            List<Item> listFindByName = tracker.findByName(name);
+            if (listFindByName.size() != 0) {
                 for (Item item : listFindByName) {
                     output.accept(String.format("Name: %s| Desc: %s| Id: %s",
                             item.getName(), item.getDescription(), item.getId()));

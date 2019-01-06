@@ -2,6 +2,8 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -18,7 +20,7 @@ public class TrackerSingle4Test {
         tracker.add(second);
         Item third = new Item("test1", "Description3", 12345L);
         tracker.add(third);
-        Item[] result = tracker.findByName("test1");
+        List<Item> result = tracker.findByName("test1");
         Item[] expect = new Item[] {first, third};
         assertThat(result, is(expect));
     }
