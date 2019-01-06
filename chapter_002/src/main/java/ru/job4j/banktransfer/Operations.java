@@ -81,7 +81,7 @@ public class Operations {
      * @param requisite Account's requisite.
      * @return User's account.
      */
-    public  Optional <Account> getAccountByRequisiteFromUserPassport(String passport, String requisite) {
+    public  Optional<Account> getAccountByRequisiteFromUserPassport(String passport, String requisite) {
         Optional<Account> accountReq = Optional.empty();
         Optional<List<Account>> userAccounts = getUserAccounts(passport);
         if (userAccounts.isPresent()) {

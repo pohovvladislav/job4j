@@ -3,6 +3,7 @@ package ru.job4j.banktransfer;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -30,7 +31,7 @@ public class BankTransferTest {
     @Test
     public void whenGetUserByPassportThenUser() {
         operations.addUser(user);
-        assertThat(operations.getUserByPassport("12345"), is(user));
+        assertThat(operations.getUserByPassport("12345"), is(Optional.of(new User("Victor", "12345"))));
     }
     @Test
     public void whenAddAccountToUser() {
@@ -51,7 +52,7 @@ public class BankTransferTest {
         operations.addUser(user);
         operations.addAccountToUser("12345", account);
         operations.addAccountToUser("12345", account1);
-        assertThat(operations.getUserAccounts("12345"), is(Arrays.asList(account, account1)));
+        assertThat(operations.getUserAccounts("12345"), is(Optional.of(Arrays.asList(account, account1))));
     }
     @Test
     public void whenTransferMoney() {
