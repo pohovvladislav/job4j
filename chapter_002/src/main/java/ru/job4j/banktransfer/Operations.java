@@ -1,10 +1,6 @@
 package ru.job4j.banktransfer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
 /**
  * The class describes banking operations.
@@ -38,16 +34,8 @@ public class Operations {
      * @param passport User's passport.
      * @return User.
      */
-    public User getUserByPassport(String passport) {
-        User user = null;
-        for (Map.Entry<User, List<Account>> entry : this.userAccount.entrySet()) {
-            User key = entry.getKey();
-            if (key.getPassport().equals(passport)) {
-                user = key;
-                break;
-            }
-        }
-        return user;
+    public Optional<User> getUserByPassport(String passport) {
+        return this.userAccount.keySet().stream().filter(key -> key.getPassport().equals(passport)).findFirst();
     }
     /**
      * The method of adding an invoice to the user.
@@ -55,7 +43,10 @@ public class Operations {
      * @param account New account of user.
      */
     public void addAccountToUser(String passport, Account account) {
-        this.userAccount.get(this.getUserByPassport(passport)).add(account);
+        if (this.getUserByPassport(passport).isPresent()) {
+            User user =  this.getUserByPassport(passport).get();
+            this.userAccount.get(user).add(account);
+        }
     }
 
     /**
@@ -64,7 +55,10 @@ public class Operations {
      * @param account Account of user.
      */
     public void deleteAccountFromUser(String passport, Account account) {
-       this.userAccount.get(this.getUserByPassport(passport)).remove(account);
+        if (this.getUserByPassport(passport).isPresent()) {
+            User user =  this.getUserByPassport(passport).get();
+            this.userAccount.get(user).remove(account);
+        }
     }
 
     /**
@@ -72,8 +66,13 @@ public class Operations {
      * @param passport User passport.
      * @return List of accounts for the user.
      */
-    public List<Account> getUserAccounts(String passport) {
-        return this.userAccount.get(this.getUserByPassport(passport));
+    public Optional<List<Account>> getUserAccounts(String passport) {
+        Optional<User> user = this.getUserByPassport(passport);
+        Optional<List<Account>> accounts = Optional.empty();
+        if (user.isPresent()) {
+            accounts = Optional.of(this.userAccount.get(user.get()));
+        }
+        return accounts;
     }
 
     /**
@@ -82,12 +81,12 @@ public class Operations {
      * @param requisite Account's requisite.
      * @return User's account.
      */
-    public Account getAccountByRequisiteFromUserPassport(String passport, String requisite) {
-        Account accountReq = null;
-        List<Account> list =  this.getUserAccounts(passport).stream().filter(account ->
-                account.getRequisites().equals(requisite)).collect(Collectors.toList());
-        for (Account account : list) {
-            accountReq = account;
+    public  Optional <Account> getAccountByRequisiteFromUserPassport(String passport, String requisite) {
+        Optional<Account> accountReq = Optional.empty();
+        Optional<List<Account>> userAccounts = getUserAccounts(passport);
+        if (userAccounts.isPresent()) {
+            accountReq = userAccounts.get().stream().filter(account -> account.getRequisites()
+                    .equals(requisite)).findFirst();
         }
         return accountReq;
     }
@@ -103,8 +102,13 @@ public class Operations {
      */
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport,
                                  String destRequisite, double amount) {
-        return this.getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite).transfer(
-                this.getAccountByRequisiteFromUserPassport(destPassport, destRequisite), amount
-        );
+        boolean result = false;
+        if (this.getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite).isPresent()
+                && this.getAccountByRequisiteFromUserPassport(destPassport, destRequisite).isPresent()) {
+            result = this.getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite).get().transfer(
+                    this.getAccountByRequisiteFromUserPassport(destPassport, destRequisite).get(), amount
+            );
+        }
+        return result;
     }
 }
