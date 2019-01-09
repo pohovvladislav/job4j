@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -21,7 +22,7 @@ public class TrackerSingle4Test {
         Item third = new Item("test1", "Description3", 12345L);
         tracker.add(third);
         List<Item> result = tracker.findByName("test1");
-        Item[] expect = new Item[] {first, third};
+        List<Item> expect = Arrays.asList(first, third);
         assertThat(result, is(expect));
     }
 }

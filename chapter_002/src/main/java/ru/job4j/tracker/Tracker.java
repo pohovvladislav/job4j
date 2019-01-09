@@ -1,7 +1,9 @@
 package ru.job4j.tracker;
 
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -9,7 +11,6 @@ import java.util.stream.Collectors;
  */
 public class Tracker {
     private final List<Item> items = new ArrayList<>();
-    private int position = 0;
     private static final Random RN = new Random();
 
     /**
@@ -19,7 +20,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items.add(this.position++, item);
+        this.items.add(item);
         return item;
     }
 
@@ -37,7 +38,7 @@ public class Tracker {
      * @param item new application.
      */
     public void replace(String id, Item item) {
-        for (int index = 0; index != this.position; index++) {
+        for (int index = 0; index != this.items.size(); index++) {
             if (this.items.get(index).getId().equals(id)) {
                 this.items.set(index, item);
                 item.setId(id);
@@ -52,10 +53,9 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (int index = 0; index != this.position; index++) {
+        for (int index = 0; index != this.items.size(); index++) {
             if (this.items.get(index).getId().equals(id)) {
                 this.items.remove(index);
-                this.position--;
                 result = true;
                 break;
             }
