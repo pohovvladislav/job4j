@@ -26,8 +26,9 @@ public class KingWhite implements Figure {
         Cell[] steps = new Cell[0];
         if (source.x == dest.x || source.y == dest.y) {
             if (source.y == dest.y - 1 || source.y == dest.y + 1 || source.x == dest.x - 1
-                    || source.x == dest.x + 1)
-            steps = new Cell[]{dest};
+                    || source.x == dest.x + 1) {
+                steps = new Cell[]{dest};
+            }
         }
         return steps;
     }

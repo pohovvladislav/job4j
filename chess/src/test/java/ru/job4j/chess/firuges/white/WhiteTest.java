@@ -17,10 +17,10 @@ public class WhiteTest {
     @Test
     public void whenBishopWhiteGo() {
         BishopWhite bishopWhite = new BishopWhite(Cell.C3);
-        assertThat(bishopWhite.way(Cell.A3, Cell.E7), is(new Cell[]{ Cell.B4, Cell.C5, Cell.D6, Cell.E7}));
-        assertThat(bishopWhite.way(Cell.A3, Cell.C1), is(new Cell[]{ Cell.B2, Cell.C1}));
-        assertThat(bishopWhite.way(Cell.F5, Cell.C8), is(new Cell[]{ Cell.E6, Cell.D7, Cell.C8}));
-        assertThat(bishopWhite.way(Cell.H4, Cell.E1), is(new Cell[]{ Cell.G3, Cell.F2, Cell.E1}));
+        assertThat(bishopWhite.way(Cell.A3, Cell.E7), is(new Cell[]{Cell.B4, Cell.C5, Cell.D6, Cell.E7}));
+        assertThat(bishopWhite.way(Cell.A3, Cell.C1), is(new Cell[]{Cell.B2, Cell.C1}));
+        assertThat(bishopWhite.way(Cell.F5, Cell.C8), is(new Cell[]{Cell.E6, Cell.D7, Cell.C8}));
+        assertThat(bishopWhite.way(Cell.H4, Cell.E1), is(new Cell[]{Cell.G3, Cell.F2, Cell.E1}));
     }
     @Test
     public void whenKingWhiteGo() {
@@ -44,7 +44,7 @@ public class WhiteTest {
         assertThat(queenWhite.way(Cell.A3, Cell.E7), is(new Cell[]{Cell.B4, Cell.C5, Cell.D6, Cell.E7}));
     }
     @Test
-    public void KnightWhiteGo() {
+    public void whenKnightWhiteGo() {
         KnightWhite knightWhite = new KnightWhite(Cell.A1);
         assertThat(knightWhite.way(Cell.A2, Cell.C1), is(new Cell[]{Cell.C1}));
     }
