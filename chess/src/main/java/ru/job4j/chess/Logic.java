@@ -4,7 +4,9 @@ import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * //TODO add comments.
@@ -42,7 +44,7 @@ public class Logic {
     }
 
     private int findBy(Cell cell) {
-        int rst = - 1;
+        int rst = -1;
         Optional<Figure> figure = Arrays.stream(this.figures).filter(element -> element.position()
                 .equals(cell)).findFirst();
         if (figure.isPresent()) {
