@@ -13,11 +13,11 @@ import static org.hamcrest.core.Is.is;
 
 public class UserConvertTest {
     UserConvert convert = new UserConvert();
-    ArrayList<User> list = new ArrayList<>(Arrays.asList(
+    List<User> list = List.of(
             new User(1, "Nikolai", 30, "Kuibyshev"),
             new User(4, "Valera", 32, "Leningrad"),
             new User(7, "Egor", 27, "Vladivostok"),
-            new User(11, "Nikolai", 29, "Minsk"))
+            new User(11, "Nikolai", 29, "Minsk")
     );
     @Test
     public void whenUsersOfArrayListThenUsersOfHashMap() {
