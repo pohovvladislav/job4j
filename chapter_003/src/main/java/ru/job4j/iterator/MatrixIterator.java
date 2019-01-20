@@ -18,12 +18,12 @@ public class MatrixIterator implements Iterator {
 
     @Override
     public boolean hasNext() {
-        return !(row == array.length - 1 && cell == array[row].length);
+        return !(row == array.length - 1 && cell == array[row].length) && array.length != 0;
     }
 
     @Override
     public Object next() {
-        if (array.length == 0) {
+        if (!this.hasNext()) {
             throw new NoSuchElementException();
         }
         if (cell == array[row].length) {

@@ -1,7 +1,9 @@
-package ru.job4j.iterator;
+package ru.job4j.iterator.matrix;
 
 import org.junit.Before;
 import org.junit.Test;
+import ru.job4j.iterator.MatrixIterator;
+
 import java.util.Iterator;
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
