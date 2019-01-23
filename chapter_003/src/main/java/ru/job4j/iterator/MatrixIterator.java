@@ -8,17 +8,17 @@ import java.util.NoSuchElementException;
  */
 public class MatrixIterator implements Iterator {
 
-    private int[][] array;
+    private final int[][] array;
     private int row = 0;
     private int cell = 0;
 
-    public MatrixIterator(int[][] array) {
+    public MatrixIterator(final int[][] array) {
         this.array = array;
     }
 
     @Override
     public boolean hasNext() {
-        return !(row == array.length - 1 && cell == array[row].length) && array.length != 0;
+        return row < array.length;
     }
 
     @Override
@@ -26,10 +26,11 @@ public class MatrixIterator implements Iterator {
         if (!this.hasNext()) {
             throw new NoSuchElementException();
         }
+        int result = array[row][cell++];
         if (cell == array[row].length) {
             cell = 0;
             row++;
         }
-        return array[row][cell++];
+        return result;
     }
 }
