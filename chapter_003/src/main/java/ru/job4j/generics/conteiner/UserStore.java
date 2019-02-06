@@ -3,7 +3,7 @@ package ru.job4j.generics.conteiner;
 import ru.job4j.generics.SimpleArray;
 
 /**
- * Class- conteiner of users.
+ * Class-storage of users.
  */
 
 public class UserStore extends AbstractStore<User>  {

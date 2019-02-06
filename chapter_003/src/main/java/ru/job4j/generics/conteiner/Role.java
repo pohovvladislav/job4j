@@ -1,7 +1,7 @@
 package ru.job4j.generics.conteiner;
 
 /**
- * Class-conteiner of roles.
+ * @author В-87
  */
 public class Role extends Base {
 

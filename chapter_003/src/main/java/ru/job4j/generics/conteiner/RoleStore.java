@@ -3,7 +3,7 @@ package ru.job4j.generics.conteiner;
 import ru.job4j.generics.SimpleArray;
 
 /**
- * @author В-87
+ * Class-storage of roles.
  */
 public class RoleStore extends AbstractStore<Role> {
 
