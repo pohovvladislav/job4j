@@ -11,7 +11,7 @@ public class SimpleStackTest {
 
     @Before
     public void beforeTest() {
-        stack = new SimpleStack<>(new SimpleArrayList<>());
+        stack = new SimpleStack<>();
         stack.push(5);
         stack.push(4);
         stack.push(3);
@@ -26,7 +26,9 @@ public class SimpleStackTest {
         assertThat(stack.pop(), is(2));
         assertThat(stack.pop(), is(3));
         assertThat(stack.pop(), is(4));
+        assertThat(stack.isEmpty(), is(false));
         assertThat(stack.pop(), is(5));
+        assertThat(stack.isEmpty(), is(true));
     }
 
 }

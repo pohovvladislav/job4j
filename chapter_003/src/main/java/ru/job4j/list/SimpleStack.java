@@ -5,17 +5,15 @@ package ru.job4j.list;
  * @param <T>
  */
 public class SimpleStack<T> {
-    private SimpleArrayList<T> list;
-
-    public SimpleStack(SimpleArrayList<T> list) {
-        this.list = list;
-    }
+    private SimpleArrayList<T> list = new SimpleArrayList<>();
+    private int count = 0;
 
     /**
      * Метод достает объект из стека.
      * @return объект.
      */
     public T pop() {
+        count--;
         return list.delete();
     }
 
@@ -25,5 +23,18 @@ public class SimpleStack<T> {
      */
     public void push(T value) {
         list.add(value);
+        count++;
+    }
+
+    /**
+     * Метод проверяет пуст ли стек.
+     * @return Результат проверки.
+     */
+    public boolean isEmpty() {
+        boolean result = false;
+        if (count == 0) {
+            result = true;
+        }
+        return result;
     }
 }
