@@ -5,7 +5,7 @@ package ru.job4j.list;
  * @param <T>
  */
 public class SimpleStack<T> {
-    private SimpleArrayList<T> list = new SimpleArrayList<>();
+    private SimpleList<T> list = new SimpleList<>();
     private int count = 0;
 
     /**

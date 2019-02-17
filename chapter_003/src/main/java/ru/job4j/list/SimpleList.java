@@ -2,7 +2,7 @@ package ru.job4j.list;
 
 import java.util.NoSuchElementException;
 
-public class SimpleArrayList<E> {
+public class SimpleList<E> {
     private int size;
     private Node<E> first;
 
