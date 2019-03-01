@@ -19,7 +19,9 @@
         <module>chapter_002</module>
         <module>chess</module>
         <module>chapter_003</module>
+        <module>patterns</module>
     </modules>
+
 <dependencies>
     <dependency>
         <groupId>org.hamcrest</groupId>
