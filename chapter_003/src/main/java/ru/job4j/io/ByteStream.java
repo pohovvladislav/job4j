@@ -22,6 +22,7 @@ public class ByteStream {
             while ((n = stream.read()) != -1) {
                 if (n == 0 || n % 2 == 0) {
                     result = true;
+                    break;
                 }
             }
         }
