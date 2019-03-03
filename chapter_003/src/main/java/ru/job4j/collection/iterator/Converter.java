@@ -10,8 +10,8 @@ import java.util.NoSuchElementException;
 public class Converter {
 
     Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
-        return new Iterator<Integer>() {
-            private Iterator<Integer> iterator = (new ArrayList<Integer>()).iterator();
+        return new Iterator<>() {
+            private Iterator<Integer> iterator = new ArrayList<Integer>().iterator();
             @Override
             public boolean hasNext() {
                 while (it.hasNext() && !iterator.hasNext()) {

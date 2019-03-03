@@ -10,8 +10,8 @@ public class UserTest {
 
     @Test
     public void whenCreateMapForSameKey() {
-        User user = new User("Sasha", 1, new GregorianCalendar(1990,1,1));
-        User user1 = new User("Sasha", 1, new GregorianCalendar(1990,1,1));
+        User user = new User("Sasha", 1, new GregorianCalendar(1990, 1, 1));
+        User user1 = new User("Sasha", 1, new GregorianCalendar(1990, 1, 1));
         Map<User, Object> map = new HashMap<>();
 
         map.put(user, "One");
