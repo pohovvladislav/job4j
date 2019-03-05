@@ -1,6 +1,8 @@
 package ru.job4j.io;
 
+
 import java.io.*;
+
 
 /**
  * @author В-87
@@ -8,7 +10,6 @@ import java.io.*;
 public class DeleteWords {
     /**
      * The method filters the incoming stream using an array.
-     *
      * @param in    InputStream.
      * @param out   OutputStream.
      * @param abuse Array.
@@ -39,6 +40,7 @@ public class DeleteWords {
                         }
                     }
                     if (!mark) {
+                        byte[] arr = word.getBytes();
                         writer.write(word + " ");
                     }
                 }
@@ -48,3 +50,4 @@ public class DeleteWords {
         }
     }
 }
+
