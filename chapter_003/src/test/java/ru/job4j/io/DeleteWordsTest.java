@@ -14,8 +14,8 @@ public class DeleteWordsTest {
         DeleteWords deleteWords = new DeleteWords();
         String text = "hello ass have are you";
 
-        String out = " ";
-        String expect = " hello have are you ";
+        String out = "";
+        String expect = "hello have are you ";
         String[] abuse = {"name", "test", "ass"};
         byte[] input = text.getBytes();
         byte[] output = out.getBytes();

@@ -40,7 +40,6 @@ public class DeleteWords {
                         }
                     }
                     if (!mark) {
-                        byte[] arr = word.getBytes();
                         writer.write(word + " ");
                     }
                 }
