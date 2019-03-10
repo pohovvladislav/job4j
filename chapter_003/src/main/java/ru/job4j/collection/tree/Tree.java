@@ -3,7 +3,7 @@ package ru.job4j.collection.tree;
 import java.util.*;
 
 /**
- * @param <E>
+ * @param <E> The type of element.
  * @author В-87
  */
 public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
@@ -43,6 +43,25 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
             }
         }
         return rsl;
+    }
+
+    /**
+     * The method checks whether the tree is binary or not.
+     * @return
+     */
+    public boolean isBinary() {
+        boolean result = true;
+        Queue<Node<E>> queue = new LinkedList<>();
+        queue.add(this.root);
+        while (!queue.isEmpty()) {
+            Node<E> poll = queue.poll();
+            if (poll.leaves().size() > 2) {
+                result = false;
+                break;
+            }
+            queue.addAll(poll.leaves());
+        }
+        return result;
     }
 
     @Override
