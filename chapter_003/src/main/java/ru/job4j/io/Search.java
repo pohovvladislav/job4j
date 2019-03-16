@@ -21,24 +21,31 @@ public class Search {
         queue.add(new File(parent));
         while (!queue.isEmpty()) {
             File poll = queue.poll();
-
             if (poll.isDirectory()) {
                 queue.addAll(Arrays.stream(poll.listFiles()).collect(Collectors.toList()));
             } else {
-
-                String fileName = poll.getName();
-                int pos = fileName.lastIndexOf(".");
-                if (pos > 0) {
-                    fileName = fileName.substring(pos);
-                }
-
                 for (String str : exts) {
-                    if (str.equals(fileName)) {
+                    if (str.equals(this.extension(poll))) {
                         list.add(poll);
                     }
                 }
             }
         }
         return list;
+    }
+
+    /**
+     * The method determines the file extension.
+     *
+     * @param file File.
+     * @return File extension.
+     */
+    public String extension(File file) {
+        String fileName = file.getName();
+        int pos = fileName.lastIndexOf(".");
+        if (pos > 0) {
+            fileName = fileName.substring(pos);
+        }
+        return fileName;
     }
 }
