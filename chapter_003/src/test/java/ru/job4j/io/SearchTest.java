@@ -17,11 +17,11 @@ public class SearchTest {
         Search search = new Search();
         List<String> list = Arrays.asList(".html", ".css");
         List<String> expect = Arrays.asList(
-                "C:\\projects\\job4j\\chapter_003\\src\\main\\java\\ru\\job4j\\io\\tmpdir\\file.html",
-                "C:\\projects\\job4j\\chapter_003\\src\\main\\java\\ru\\job4j\\io\\tmpdir\\dir\\file.css",
-                "C:\\projects\\job4j\\chapter_003\\src\\main\\java\\ru\\job4j\\io\\tmpdir\\dir\\file_2.css"
+                "file_3.html",
+                "file_1.css",
+                "file_2.css"
         );
-        assertThat(search.files(System.getProperty("user.dir"), list).stream().map(file -> file.getAbsolutePath())
+        assertThat(search.files(System.getProperty("user.dir"), list).stream().map(File::getName)
                 .collect(Collectors.toList()), is(expect)
         );
     }

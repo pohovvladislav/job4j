@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -23,10 +23,7 @@ public class Archive {
     private File source;
 
     /** Name of the archive folder. */
-    private String archiveDir;
-
-    /** List of archived files. */
-    private final ArrayList<File> files = new ArrayList<>();
+    private String destFolder;
 
     /**
      * Creating archive.
@@ -64,7 +61,7 @@ public class Archive {
             count++;
         }
         if (args[7].equals("-o")) {
-            archiveDir = args[8];
+            destFolder = args[8];
             count++;
         }
         return count == 3;
@@ -73,19 +70,23 @@ public class Archive {
     /**
      * Creating a list of archived files.
      *
-     * @param source source file.
-     * @return list files.
+     * @param source file source.
+     * @return list.
      */
-    private ArrayList<File> directory(File source) {
-        File[] listFiles = source.listFiles();
-        if (listFiles != null) {
-            for (File file : listFiles) {
-                if (file.isDirectory()) {
-                    directory(file);
-                    continue;
-                }
+    private List<File> directory(File source) {
+        Queue<File> queue = new LinkedList<>();
+        List<File> files = new ArrayList<>();
+        queue.add(source);
+        while (!queue.isEmpty()) {
+            File file = queue.poll();
+            if (!file.isDirectory()) {
                 if (!exclude(file, expansion)) {
                     files.add(file);
+                }
+            } else {
+                File[] folder = file.listFiles();
+                if (folder != null) {
+                    queue.addAll(Arrays.asList(folder));
                 }
             }
         }
@@ -108,8 +109,8 @@ public class Archive {
      *
      * @param files list files.
      */
-    private void output(ArrayList<File> files) {
-        try (ZipOutputStream stream = new ZipOutputStream(new FileOutputStream(archiveDir))) {
+    private void output(List<File> files) {
+        try (ZipOutputStream stream = new ZipOutputStream(new FileOutputStream(destFolder))) {
             for (File file : files) {
                 try (FileInputStream fis = new FileInputStream(file)) {
                     stream.putNextEntry(new ZipEntry(file.getPath()));
@@ -139,8 +140,8 @@ public class Archive {
     public static void main(String[] args) {
         Archive archive = new Archive("java -jar pack.jar -d c:\\projects\\job4j\\ -e *.java -o projects.zip");
         if (archive.parse(archive.args)) {
-            ArrayList<File> directory = archive.directory(archive.source);
-            archive.output(directory);
+            List<File> fileList = archive.directory(archive.source);
+            archive.output(fileList);
         }
     }
 }
