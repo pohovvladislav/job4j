@@ -11,7 +11,7 @@ public class ByteStreamTest {
     @Test
     public void when() throws IOException {
         ByteStream byteStream = new ByteStream();
-        byte[] arr = {1, 3, 5, 7, 8};
+        byte[] arr = {1, 3, 5, 7, 12};
         ByteArrayInputStream inputStream = new ByteArrayInputStream(arr);
         assertTrue(byteStream.isNumber(inputStream));
     }

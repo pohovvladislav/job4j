@@ -41,7 +41,7 @@ public class SimpleSet<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
+        return new Iterator<>() {
             private int count = 0;
 
             @Override

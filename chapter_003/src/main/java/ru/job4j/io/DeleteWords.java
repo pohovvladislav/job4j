@@ -7,14 +7,15 @@ import java.io.*;
 /**
  * @author В-87
  */
-public class DeleteWords {
+class DeleteWords {
     /**
      * The method filters the incoming stream using an array.
+     *
      * @param in    InputStream.
      * @param out   OutputStream.
      * @param abuse Array.
      */
-    public void dropAbuses(InputStream in, OutputStream out, String[] abuse) {
+    void dropAbuses(InputStream in, OutputStream out, String[] abuse) {
 
         try (InputStream input = in;
              BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out))) {

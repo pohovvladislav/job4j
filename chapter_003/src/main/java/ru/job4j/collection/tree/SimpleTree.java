@@ -12,7 +12,7 @@ public interface SimpleTree<E extends Comparable<E>> extends Iterable<E> {
      *
      * @param parent parent.
      * @param child  child.
-     * @return
+     * @return true or false, в зависимости от результата.
      */
     boolean add(E parent, E child);
 

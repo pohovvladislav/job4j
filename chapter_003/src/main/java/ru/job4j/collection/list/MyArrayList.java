@@ -1,5 +1,7 @@
 package ru.job4j.collection.list;
 
+import lombok.NoArgsConstructor;
+
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -7,8 +9,9 @@ import java.util.NoSuchElementException;
 
 /**
  * The class realises ArrayList.
- * @author В-87
+ *
  * @param <E>
+ * @author В-87
  */
 public class MyArrayList<E> implements Iterable<E> {
     private int firstLength = 2;
@@ -16,15 +19,16 @@ public class MyArrayList<E> implements Iterable<E> {
     private int index = 0;
     private int modCount = 0;
 
-    public MyArrayList() {
+    MyArrayList() {
     }
 
-    public MyArrayList(int length) {
+    MyArrayList(int length) {
         this.firstLength = length;
     }
 
     /**
      * The method adds an element to the sheet.
+     *
      * @param value Element.
      */
     public void add(E value) {
@@ -37,6 +41,7 @@ public class MyArrayList<E> implements Iterable<E> {
 
     /**
      * The method of finding the element at index.
+     *
      * @param index Index.
      * @return Element.
      */

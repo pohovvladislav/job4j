@@ -11,7 +11,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     private int modCount = 0;
 
 
-    public Tree(final E value) {
+    Tree(final E value) {
         this.root = new Node<>(value);
     }
 
@@ -47,9 +47,10 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
     /**
      * The method checks whether the tree is binary or not.
-     * @return
+     *
+     * @return result.
      */
-    public boolean isBinary() {
+    boolean isBinary() {
         boolean result = true;
         Queue<Node<E>> queue = new LinkedList<>();
         queue.add(this.root);
