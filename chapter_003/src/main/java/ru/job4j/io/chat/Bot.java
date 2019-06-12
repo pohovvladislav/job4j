@@ -1,4 +1,4 @@
-package ru.job4j.io.consoleChat;
+package ru.job4j.io.chat;
 
 import java.io.*;
 
