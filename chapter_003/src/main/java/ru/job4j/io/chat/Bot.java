@@ -9,20 +9,10 @@ import java.io.*;
 class Bot {
 
     /** Файл, из которого бот берет ответы */
-    private final File source = createSourceFile();
+    private final File source = new File("chapter_003/resources/answers.txt");
 
     /** Файл, в который происходит запись диалога */
-    private final File log = createLogFile();
-
-    private File createSourceFile() {
-        String dir = System.getProperty("user.dir");
-        return new File(dir + "/chapter_003/resources/answers.txt");
-    }
-
-    private File createLogFile() {
-        String dir = System.getProperty("user.dir");
-        return new File(dir + "/chapter_003/resources/log.txt");
-    }
+    private final File log = new File("chapter_003/resources/log.txt");
 
     private StringBuilder readSource() {
         StringBuilder builder = new StringBuilder();

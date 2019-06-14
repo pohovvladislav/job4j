@@ -1,5 +1,6 @@
 package ru.job4j.io.chat;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -48,13 +49,13 @@ public class ConsoleChat {
 
     private void manage(String message) {
         write(message);
-        if (message.equals(CONCLUDE)) {
+        if (Objects.equals(CONCLUDE, message)) {
             end = true;
         } else {
             if (!stop) {
                 botReplied(message);
             }
-            if (message.equals(RESUME)) {
+            if (Objects.equals(RESUME, message)) {
                 stop = false;
                 startCommunication = true;
             }
@@ -67,7 +68,7 @@ public class ConsoleChat {
     }
 
     private void botReplied(String message) {
-        if (message.equals(STOP)) {
+        if (Objects.equals(STOP, message)) {
             stop = true;
         } else {
             String text = bot.reply();
